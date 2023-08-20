@@ -79,5 +79,20 @@ namespace StoreManagement.DAO
             }
             return result;
         }
+/*
+        public DataTable ChiTietHoaDon(string id) 
+        {
+            string query = "select MaHoaDon as 'Mã hóa đơn', " +
+                "ChiTietHoaDon.MaSanPham as 'Mã sản phẩm', " +
+                "TenSanPham as 'Tên sản phẩm', " +
+                "ChiTietHoaDon.SoLuong as 'Số lượng', " +
+                "DonGia as 'Đơn giá', GiamGia as 'Giảm giá, " +
+                "ThanhTien as 'Thành tiền" +
+                "from ChiTietHoaDon inner join SanPham on ChiTietHoaDon.MaSanPham = SanPham.MaSanPham" +
+                "and ChiTietHoaDon.MaHoaDon = @id";
+            object[] parameter = { id };
+            return DataProvider.Instance.ExecuteQuery(query, parameter);
+
+        }*/
     }
 }

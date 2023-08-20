@@ -152,7 +152,6 @@
             this.Load += new System.EventHandler(this.FormThemKH_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

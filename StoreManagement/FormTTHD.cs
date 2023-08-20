@@ -36,6 +36,8 @@ namespace StoreManagement
         {
             dgvSanPham.DataSource = SanPhamDAO.Instance.DSSanPham();
 
+            dgvSanPham.Columns["Mã sản phẩm"].Visible = false;
+
             DataGridViewImageColumn img = new DataGridViewImageColumn();
             img = (DataGridViewImageColumn)dgvSanPham.Columns[0];
             img.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -64,6 +66,7 @@ namespace StoreManagement
                 gioHang.Columns.Add("GIÁ BÁN", typeof(float));
             }
         }
+
         private void btnTaoHoaDon_Click(object sender, EventArgs e)
         {
             ResetValue();
@@ -75,7 +78,7 @@ namespace StoreManagement
         }
 
         //Them san pham vao gio hang
-        private void btnThemGioHang_Click(object sender, EventArgs e)
+        private void ThemVaoGioHang()
         {
             if (dgvSanPham.SelectedRows[0].Cells["Mã sản phẩm"].Value != null)
             {
@@ -132,6 +135,19 @@ namespace StoreManagement
             }
         }
 
+        private void btnThemGioHang_Click(object sender, EventArgs e)
+        {
+            ThemVaoGioHang();
+        }
+
+        private void dgvSanPham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!btnTaoHoaDon.Enabled)
+            {
+                ThemVaoGioHang();
+            }
+        }
+
         private void btnHuyHD_Click(object sender, EventArgs e)
         {
             ResetValue();
@@ -150,35 +166,41 @@ namespace StoreManagement
 
         private void btnInHD_Click(object sender, EventArgs e)
         {
-            /*Excel.Application exApp = new Excel.Application();
-            Excel.Workbook exWBook;
-            Excel.Sheets ExSheet;*/
+            if (dgvGioHang.RowCount > 1)
+            {
+                
+            }
+            
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            GetValueHoaDon();
-            try
+            if(dgvGioHang.RowCount > 1)
             {
-                if (HoaDonBUS.Instance.LuuHoaDon(hoaDon) == true)
+                GetValueHoaDon();
+                try
                 {
-                    MessageBox.Show("Lưu hóa đơn thành công");
-                    ThemChiTietHoaDon();
-                    btnTaoHoaDon.Enabled = true;
-                    ResetValue();
-                    FormTTHD_Load(sender, e);
+                    if (HoaDonBUS.Instance.LuuHoaDon(hoaDon) == true)
+                    {
+                        MessageBox.Show("Lưu hóa đơn thành công");
+                        ThemChiTietHoaDon();
+                        pPDHoaDon.Document = pDHoaDon;
+                        pPDHoaDon.ShowDialog();
+                        btnTaoHoaDon.Enabled = true;
+                        ResetValue();
+                        FormTTHD_Load(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lưu hóa đơn ko thành công");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Lưu hóa đơn ko thành công");
+                    //throw ex;
+                    MessageBox.Show("Lỗi: " + ex);
                 }
             }
-            catch (Exception ex)
-            {
-                //throw ex;
-                MessageBox.Show("Lỗi: " + ex);
-            }
-
         }
 
         private float TinhTien()
@@ -233,35 +255,31 @@ namespace StoreManagement
 
         private void GetValueHoaDon()
         {
-            FormDSKhachHang luuKH = new FormDSKhachHang();
-            
-            string maHoaDon = tbxMaHD.Text;
-            DateTime ngayBan = DateTime.Now;
-            string maKH;
-            string ghiChu;
-            DialogResult result = MessageBox.Show("Bạn có muốn lưu tên khách hàng không?", "Khách hàng", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            if(dgvGioHang.RowCount > 1)
             {
-                luuKH.ShowDialog();
-                maKH = luuKH.chonKH();
-                ghiChu = " ";
+                FormDSKhachHang luuKH = new FormDSKhachHang();
+
+                string maHoaDon = tbxMaHD.Text;
+                DateTime ngayBan = DateTime.Now;
+                string maKH;
+                string ghiChu;
+                DialogResult result = MessageBox.Show("Bạn có muốn lưu tên khách hàng không?", "Khách hàng", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    luuKH.ShowDialog();
+                    maKH = luuKH.chonKH();
+                    ghiChu = " ";
+                }
+                else
+                {
+                    maKH = "KH1";
+                    ghiChu = " ";
+                }
+
+                float thanhTien = float.Parse(tbxThanhTien.Text);
+
+                hoaDon = new HoaDonDTO(maHoaDon, ngayBan, thanhTien, maKH, ghiChu);
             }
-            else
-            {
-                maKH = "KH1";
-                ghiChu = " ";
-            }
-
-            float thanhTien = float.Parse(tbxThanhTien.Text);
-
-            hoaDon = new HoaDonDTO(maHoaDon, ngayBan, thanhTien, maKH, ghiChu);
-
-            // đầu tiên tạo hóa đơn -> add hoaDon trc -> sau đó tạo chi tiết hóa đơn
-            // insert into hoadon values ( maHoaDon, ngayBan, thanhtien, maKH, ghiChu)
-            //insert into ChiTiethoadon values ( maHoaDon, maSanPham1, soLuong1, donGia1, giamGia, thanhTien), ( maHoaDon, maSanPham2, soLuong2, donGia2, giamGia
-            //, thanhTien),...( maHoaDon, maSanPham thu n, soLuong cua san pham thu n, donGia cua san pham thu n, giamGia, thanhTien)
-            // -> để show cthd thì chọn tất cả from cthd where mahoadon = @mahoadon
-
         }
 
         public void ThemChiTietHoaDon()
@@ -294,6 +312,92 @@ namespace StoreManagement
             tbxGiamGia.Text = "";
             tbxThanhTien.Text = "";
             gioHang.Rows.Clear();
+        }
+
+        private void pDHoaDon_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            string maHD = "Mã hóa đơn: " + tbxMaHD.Text;
+            string ngayBan = "Ngày: " + dtpkNgayBan.Value.ToString();
+            string tongTien = "Tổng tiền: " + tbxDonGia.Text;
+            string giamGia = "Giảm giá: " + tbxGiamGia.Text + "%";
+            string thanhTien = "Thành tiền: " + tbxThanhTien.Text;
+
+            e.Graphics.DrawString("TẠP HÓA THÙY DUNG".ToUpper(), new Font("Microsoft Sans Serif",
+                20, FontStyle.Bold), Brushes.Black, new Point(280, 20));
+            e.Graphics.DrawString("280, tổ 15, khu phố Tám Thước, huyện Kiên Lương, tỉnh Kiên Giang".ToUpper(), 
+                new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(150, 60));
+            e.Graphics.DrawString("SDT: +84-024681012".ToUpper(), new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(330, 80));
+            e.Graphics.DrawString("HÓA ĐƠN BÁN HÀNG".ToUpper(), new Font("Microsoft Sans Serif",
+                18, FontStyle.Bold), Brushes.Black, new Point(280, 140));
+            e.Graphics.DrawString(maHD.ToUpper(), new Font("Microsoft Sans Serif",
+                12, FontStyle.Bold), Brushes.Black, new Point(330, 170));
+            e.Graphics.DrawString(ngayBan.ToUpper(), new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(330, 190));
+
+            Pen blackPen = new Pen(Color.Black, 1);
+
+            int y = 220;
+
+            Point p1 = new Point(10, y);
+            Point p2 = new Point(840, y);
+
+            e.Graphics.DrawLine(blackPen, p1, p2);
+
+            y += 10;
+
+            e.Graphics.DrawString("Mã sản phẩm", new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(20, y));
+            e.Graphics.DrawString("Tên sản phẩm", new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(180, y));
+            e.Graphics.DrawString("Số lượng", new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(Right - 120, y));
+            e.Graphics.DrawString("Giá", new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(Right, y));
+
+
+            for (int i = 0; i < dgvGioHang.RowCount - 1; i++)
+            {
+                y += 20;
+
+                string maSanPham = dgvGioHang.Rows[i].Cells["MÃ SẢN PHẨM"].Value.ToString();
+                string tenSanPham = dgvGioHang.Rows[i].Cells["TÊN SẢN PHẨM"].Value.ToString();
+                int soLuong = (int)dgvGioHang.Rows[i].Cells["SỐ LƯỢNG"].Value;
+                float donGia = float.Parse(dgvGioHang.Rows[i].Cells["GIÁ BÁN"].Value.ToString());
+
+
+                e.Graphics.DrawString(maSanPham, new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(20, y));
+                e.Graphics.DrawString(tenSanPham, new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(180, y));
+                e.Graphics.DrawString(soLuong.ToString(), new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(Right - 120, y));
+                e.Graphics.DrawString(donGia.ToString(), new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(Right, y));
+                
+            }
+
+            y += 30;
+            Point p3 = new Point(10, y);
+            Point p4 = new Point(840, y);
+            e.Graphics.DrawLine(blackPen, p3, p4);
+
+            y += 20;
+            e.Graphics.DrawString(tongTien, new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));
+
+            y += 20;
+            e.Graphics.DrawString(giamGia, new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));
+
+            y += 20;
+            e.Graphics.DrawString(thanhTien, new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));
+
+            y += 50;
+            e.Graphics.DrawString("Xin cảm ơn quý khách!", new Font("Microsoft Sans Serif",
+            14, FontStyle.Bold), Brushes.Black, new Point(300, y));
         }
     }
 }

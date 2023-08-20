@@ -16,3 +16,4 @@ D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormTTHD.r
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormNhapSoLuong.resources
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormDSPhanLoai.resources
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormThemKH.resources
+D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.csproj.ResolveComReference.cache

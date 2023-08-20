@@ -20,6 +20,7 @@ namespace StoreManagement
             //Dgv
             dgvSanPham.DataSource = SanPhamDAO.Instance.DSSanPham();
             dgvSanPham.Columns["Ảnh"].ReadOnly = true;
+            dgvSanPham.Columns["Mã sản phẩm"].Visible = false;
 
             //Dua du lieu tu bang NhaCungCap vao combobox
             cbxPhanLoai.DataSource = PhanLoaiDAO.Instance.DSPhanLoai();

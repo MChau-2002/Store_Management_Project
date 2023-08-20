@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTTHD));
             this.pnlButton = new System.Windows.Forms.Panel();
             this.btnInHD = new System.Windows.Forms.Button();
             this.btnHuyHD = new System.Windows.Forms.Button();
@@ -51,6 +52,8 @@
             this.pnlDSSP = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.gbxInfo = new System.Windows.Forms.GroupBox();
+            this.pPDHoaDon = new System.Windows.Forms.PrintPreviewDialog();
+            this.pDHoaDon = new System.Drawing.Printing.PrintDocument();
             this.pnlButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSanPham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGioHang)).BeginInit();
@@ -147,6 +150,7 @@
             this.dgvSanPham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSanPham.Size = new System.Drawing.Size(568, 475);
             this.dgvSanPham.TabIndex = 1;
+            this.dgvSanPham.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSanPham_CellDoubleClick);
             // 
             // dgvGioHang
             // 
@@ -330,6 +334,20 @@
             this.gbxInfo.TabStop = false;
             this.gbxInfo.Text = "Thông tin hóa đơn";
             // 
+            // pPDHoaDon
+            // 
+            this.pPDHoaDon.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.pPDHoaDon.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.pPDHoaDon.ClientSize = new System.Drawing.Size(400, 300);
+            this.pPDHoaDon.Enabled = true;
+            this.pPDHoaDon.Icon = ((System.Drawing.Icon)(resources.GetObject("pPDHoaDon.Icon")));
+            this.pPDHoaDon.Name = "pPDHoaDon";
+            this.pPDHoaDon.Visible = false;
+            // 
+            // pDHoaDon
+            // 
+            this.pDHoaDon.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pDHoaDon_PrintPage);
+            // 
             // FormTTHD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -378,5 +396,7 @@
         private System.Windows.Forms.Button btnHuyHD;
         private System.Windows.Forms.Button btnThanhToan;
         private System.Windows.Forms.Button btnTaoHoaDon;
+        private System.Windows.Forms.PrintPreviewDialog pPDHoaDon;
+        private System.Drawing.Printing.PrintDocument pDHoaDon;
     }
 }

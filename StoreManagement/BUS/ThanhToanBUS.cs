@@ -37,12 +37,6 @@ namespace StoreManagement.BUS
 
         public string idGenerate(string prefix)
         {
-            /*string[] partsDay = DateTime.Now.ToShortDateString().Split('-');
-            string[] partsTime = DateTime.Now.ToLongTimeString().Split(':');
-
-            string d = string.Format("{0}{1}{2}", partsDay[0], partsDay[1], partsDay[2]);
-            string t = string.Format("{0}{1}{2}", partsTime[0], partsTime[1], partsTime[2]);*/
-
             int maxRow = ThanhToanDAO.Instance.idGenerate();
             
             string id = prefix + maxRow;

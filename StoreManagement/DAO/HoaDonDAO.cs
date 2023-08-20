@@ -26,6 +26,7 @@ namespace StoreManagement.DAO
 
         public bool LuuHoaDon(HoaDonDTO hoaDon)
         {
+            //if()
             string query = "insert into HoaDon values ( @MaHoaDon , @NgayBan , @ThanhTien , @MaKH , @GhiChu )";
             object[] parameters = { hoaDon.MaHoaDon, hoaDon.NgayBan, hoaDon.ThanhTien, hoaDon.MaKH, hoaDon.GhiChu };
             bool result = false;
