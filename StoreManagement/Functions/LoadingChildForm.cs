@@ -25,7 +25,7 @@ namespace StoreManagement.Functions
         {
             if (pnl.Controls.Count > 0)
             {
-                // Close the current child form
+                // Dong childform hien tai
                 Form CurrentChildForm = pnl.Controls[0] as Form;
                 CurrentChildForm.Close();
             }

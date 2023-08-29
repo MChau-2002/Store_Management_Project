@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTTHD));
             this.pnlButton = new System.Windows.Forms.Panel();
-            this.btnInHD = new System.Windows.Forms.Button();
             this.btnHuyHD = new System.Windows.Forms.Button();
             this.btnThanhToan = new System.Windows.Forms.Button();
             this.btnThemGioHang = new System.Windows.Forms.Button();
@@ -65,7 +64,6 @@
             // 
             this.pnlButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlButton.Controls.Add(this.btnInHD);
             this.pnlButton.Controls.Add(this.btnHuyHD);
             this.pnlButton.Controls.Add(this.btnThanhToan);
             this.pnlButton.Controls.Add(this.btnThemGioHang);
@@ -73,18 +71,6 @@
             this.pnlButton.Name = "pnlButton";
             this.pnlButton.Size = new System.Drawing.Size(1093, 65);
             this.pnlButton.TabIndex = 0;
-            // 
-            // btnInHD
-            // 
-            this.btnInHD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInHD.AutoSize = true;
-            this.btnInHD.Location = new System.Drawing.Point(616, 17);
-            this.btnInHD.Name = "btnInHD";
-            this.btnInHD.Size = new System.Drawing.Size(153, 30);
-            this.btnInHD.TabIndex = 36;
-            this.btnInHD.Text = "In hóa đơn";
-            this.btnInHD.UseVisualStyleBackColor = true;
-            this.btnInHD.Click += new System.EventHandler(this.btnInHD_Click);
             // 
             // btnHuyHD
             // 
@@ -102,7 +88,7 @@
             // 
             this.btnThanhToan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnThanhToan.AutoSize = true;
-            this.btnThanhToan.Location = new System.Drawing.Point(314, 17);
+            this.btnThanhToan.Location = new System.Drawing.Point(465, 17);
             this.btnThanhToan.Name = "btnThanhToan";
             this.btnThanhToan.Size = new System.Drawing.Size(153, 30);
             this.btnThanhToan.TabIndex = 35;
@@ -392,7 +378,6 @@
         private System.Windows.Forms.Panel pnlDSSP;
         private System.Windows.Forms.GroupBox gbxInfo;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Button btnInHD;
         private System.Windows.Forms.Button btnHuyHD;
         private System.Windows.Forms.Button btnThanhToan;
         private System.Windows.Forms.Button btnTaoHoaDon;

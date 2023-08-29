@@ -1,4 +1,5 @@
-﻿using StoreManagement.Functions;
+﻿using StoreManagement.BUS;
+using StoreManagement.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,9 +43,16 @@ namespace StoreManagement
             lblTittle.Text = "Thanh Toán Hóa Đơn";
         }
 
+        private void btnDSHoaDon_Click(object sender, EventArgs e)
+        {
+            LoadingChildForm.Instance.OpenChildForm(new FormDSHoaDon(), pnlForm);
+            lblTittle.Text = "Danh Sách Hóa Đơn";
+        }
+
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-
+            LoadingChildForm.Instance.OpenChildForm(new FormThongKe(), pnlForm);
+            lblTittle.Text = "Thống Kê";
         }
     }
 }

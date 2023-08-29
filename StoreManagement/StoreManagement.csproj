@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,21 +47,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\ChiTietHoaDonBUS.cs" />
     <Compile Include="BUS\HoaDonBUS.cs" />
     <Compile Include="BUS\KhachHangBUS.cs" />
     <Compile Include="BUS\PhanLoaiBUS.cs" />
     <Compile Include="BUS\SanPhamBUS.cs" />
     <Compile Include="BUS\ThanhToanBUS.cs" />
+    <Compile Include="BUS\ThongKeBUS.cs" />
+    <Compile Include="DAO\ChiTietHoaDonDAO.cs" />
     <Compile Include="DAO\HoaDonDAO.cs" />
     <Compile Include="DAO\KhachHangDAO.cs" />
     <Compile Include="DAO\PhanLoaiDAO.cs" />
     <Compile Include="DAO\SanPhamDAO.cs" />
     <Compile Include="DAO\ThanhToanDAO.cs" />
+    <Compile Include="DAO\ThongKeDAO.cs" />
     <Compile Include="DTO\HoaDonDTO.cs" />
     <Compile Include="DTO\KhachHangDTO.cs" />
     <Compile Include="DTO\PhanLoaiDTO.cs" />
     <Compile Include="DTO\SanPhamDTO.cs" />
     <Compile Include="DTO\ThanhToanDTO.cs" />
+    <Compile Include="FormCTHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCTHD.Designer.cs">
+      <DependentUpon>FormCTHD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDSHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDSHoaDon.Designer.cs">
+      <DependentUpon>FormDSHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDSKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +114,12 @@
     <Compile Include="FormThemKH.Designer.cs">
       <DependentUpon>FormThemKH.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThongKe.Designer.cs">
+      <DependentUpon>FormThongKe.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTTHD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +138,12 @@
     <Compile Include="FormThemSP.Designer.cs">
       <DependentUpon>FormThemSP.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormCTHD.resx">
+      <DependentUpon>FormCTHD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDSHoaDon.resx">
+      <DependentUpon>FormDSHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDSKhachHang.resx">
       <DependentUpon>FormDSKhachHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormThemKH.resx">
       <DependentUpon>FormThemKH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormThongKe.resx">
+      <DependentUpon>FormThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTTHD.resx">
       <DependentUpon>FormTTHD.cs</DependentUpon>

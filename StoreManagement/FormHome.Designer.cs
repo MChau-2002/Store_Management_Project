@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.pnlButton = new System.Windows.Forms.Panel();
-            this.btnThongKe = new System.Windows.Forms.Button();
             this.btnThanhToan = new System.Windows.Forms.Button();
-            this.btnPhanloai = new System.Windows.Forms.Button();
             this.btnKhachHang = new System.Windows.Forms.Button();
+            this.btnDSHoaDon = new System.Windows.Forms.Button();
+            this.btnThongKe = new System.Windows.Forms.Button();
+            this.btnPhanloai = new System.Windows.Forms.Button();
             this.pbxLogo = new System.Windows.Forms.PictureBox();
             this.btnSanPham = new System.Windows.Forms.Button();
             this.pnlTittle = new System.Windows.Forms.Panel();
@@ -46,10 +47,11 @@
             // pnlButton
             // 
             this.pnlButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.pnlButton.Controls.Add(this.btnThongKe);
             this.pnlButton.Controls.Add(this.btnThanhToan);
-            this.pnlButton.Controls.Add(this.btnPhanloai);
             this.pnlButton.Controls.Add(this.btnKhachHang);
+            this.pnlButton.Controls.Add(this.btnDSHoaDon);
+            this.pnlButton.Controls.Add(this.btnThongKe);
+            this.pnlButton.Controls.Add(this.btnPhanloai);
             this.pnlButton.Controls.Add(this.pbxLogo);
             this.pnlButton.Controls.Add(this.btnSanPham);
             this.pnlButton.Dock = System.Windows.Forms.DockStyle.Left;
@@ -58,31 +60,57 @@
             this.pnlButton.Size = new System.Drawing.Size(200, 694);
             this.pnlButton.TabIndex = 0;
             // 
-            // btnThongKe
-            // 
-            this.btnThongKe.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThongKe.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnThongKe.Location = new System.Drawing.Point(0, 390);
-            this.btnThongKe.Name = "btnThongKe";
-            this.btnThongKe.Size = new System.Drawing.Size(200, 50);
-            this.btnThongKe.TabIndex = 4;
-            this.btnThongKe.Text = "Thống kê";
-            this.btnThongKe.UseVisualStyleBackColor = false;
-            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
-            // 
             // btnThanhToan
             // 
             this.btnThanhToan.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThanhToan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnThanhToan.Location = new System.Drawing.Point(0, 340);
+            this.btnThanhToan.Location = new System.Drawing.Point(0, 190);
             this.btnThanhToan.Name = "btnThanhToan";
             this.btnThanhToan.Size = new System.Drawing.Size(200, 50);
             this.btnThanhToan.TabIndex = 3;
             this.btnThanhToan.Text = "Thanh Toán";
             this.btnThanhToan.UseVisualStyleBackColor = false;
             this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
+            // 
+            // btnKhachHang
+            // 
+            this.btnKhachHang.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnKhachHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKhachHang.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnKhachHang.Location = new System.Drawing.Point(0, 340);
+            this.btnKhachHang.Name = "btnKhachHang";
+            this.btnKhachHang.Size = new System.Drawing.Size(200, 50);
+            this.btnKhachHang.TabIndex = 1;
+            this.btnKhachHang.Text = "Khách Hàng";
+            this.btnKhachHang.UseVisualStyleBackColor = false;
+            this.btnKhachHang.Click += new System.EventHandler(this.btnKhachHang_Click);
+            // 
+            // btnDSHoaDon
+            // 
+            this.btnDSHoaDon.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnDSHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDSHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDSHoaDon.Location = new System.Drawing.Point(0, 390);
+            this.btnDSHoaDon.Name = "btnDSHoaDon";
+            this.btnDSHoaDon.Size = new System.Drawing.Size(200, 50);
+            this.btnDSHoaDon.TabIndex = 5;
+            this.btnDSHoaDon.Text = "Hóa Đơn";
+            this.btnDSHoaDon.UseVisualStyleBackColor = false;
+            this.btnDSHoaDon.Click += new System.EventHandler(this.btnDSHoaDon_Click);
+            // 
+            // btnThongKe
+            // 
+            this.btnThongKe.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThongKe.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnThongKe.Location = new System.Drawing.Point(0, 440);
+            this.btnThongKe.Name = "btnThongKe";
+            this.btnThongKe.Size = new System.Drawing.Size(200, 50);
+            this.btnThongKe.TabIndex = 4;
+            this.btnThongKe.Text = "Thống kê";
+            this.btnThongKe.UseVisualStyleBackColor = false;
+            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
             // 
             // btnPhanloai
             // 
@@ -97,19 +125,6 @@
             this.btnPhanloai.UseVisualStyleBackColor = false;
             this.btnPhanloai.Click += new System.EventHandler(this.btnNCC_Click);
             // 
-            // btnKhachHang
-            // 
-            this.btnKhachHang.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnKhachHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKhachHang.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnKhachHang.Location = new System.Drawing.Point(0, 240);
-            this.btnKhachHang.Name = "btnKhachHang";
-            this.btnKhachHang.Size = new System.Drawing.Size(200, 50);
-            this.btnKhachHang.TabIndex = 1;
-            this.btnKhachHang.Text = "Khách Hàng";
-            this.btnKhachHang.UseVisualStyleBackColor = false;
-            this.btnKhachHang.Click += new System.EventHandler(this.btnKhachHang_Click);
-            // 
             // pbxLogo
             // 
             this.pbxLogo.Location = new System.Drawing.Point(0, 0);
@@ -123,7 +138,7 @@
             this.btnSanPham.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSanPham.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSanPham.Location = new System.Drawing.Point(0, 190);
+            this.btnSanPham.Location = new System.Drawing.Point(0, 240);
             this.btnSanPham.Name = "btnSanPham";
             this.btnSanPham.Size = new System.Drawing.Size(200, 50);
             this.btnSanPham.TabIndex = 0;
@@ -192,6 +207,7 @@
         private System.Windows.Forms.Button btnKhachHang;
         private System.Windows.Forms.Button btnThanhToan;
         private System.Windows.Forms.Button btnThongKe;
+        private System.Windows.Forms.Button btnDSHoaDon;
     }
 }
 

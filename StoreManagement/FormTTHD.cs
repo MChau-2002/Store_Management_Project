@@ -164,15 +164,6 @@ namespace StoreManagement
             dgvSanPham.DataSource = SanPhamDAO.Instance.DSSanPham();
         }
 
-        private void btnInHD_Click(object sender, EventArgs e)
-        {
-            if (dgvGioHang.RowCount > 1)
-            {
-                
-            }
-            
-        }
-
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
             if(dgvGioHang.RowCount > 1)
@@ -183,7 +174,7 @@ namespace StoreManagement
                     if (HoaDonBUS.Instance.LuuHoaDon(hoaDon) == true)
                     {
                         MessageBox.Show("Lưu hóa đơn thành công");
-                        ThemChiTietHoaDon();
+                        LuuCTHD();
                         pPDHoaDon.Document = pDHoaDon;
                         pPDHoaDon.ShowDialog();
                         btnTaoHoaDon.Enabled = true;
@@ -282,7 +273,8 @@ namespace StoreManagement
             }
         }
 
-        public void ThemChiTietHoaDon()
+        //GetValue CTHD
+        public void LuuCTHD()
         {
             maHoaDon = tbxMaHD.Text;
             float thanhTien = float.Parse(tbxThanhTien.Text);
@@ -301,7 +293,7 @@ namespace StoreManagement
                 
                 thanhToan = new ThanhToanDTO(maHoaDon, maSanPham, soLuong, donGia, giamGia, thanhTien);
                 ThanhToanBUS.Instance.UpdateSoLuong(soLuong, maSanPham);
-                ThanhToanBUS.Instance.ThemChiTietHoaDon(thanhToan);
+                ThanhToanBUS.Instance.LuuCTHD(thanhToan);
             }
         }
 
@@ -314,6 +306,7 @@ namespace StoreManagement
             gioHang.Rows.Clear();
         }
 
+        //In hoa don
         private void pDHoaDon_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             string maHD = "Mã hóa đơn: " + tbxMaHD.Text;
@@ -322,6 +315,7 @@ namespace StoreManagement
             string giamGia = "Giảm giá: " + tbxGiamGia.Text + "%";
             string thanhTien = "Thành tiền: " + tbxThanhTien.Text;
 
+            //Header
             e.Graphics.DrawString("TẠP HÓA THÙY DUNG".ToUpper(), new Font("Microsoft Sans Serif",
                 20, FontStyle.Bold), Brushes.Black, new Point(280, 20));
             e.Graphics.DrawString("280, tổ 15, khu phố Tám Thước, huyện Kiên Lương, tỉnh Kiên Giang".ToUpper(), 
@@ -347,6 +341,7 @@ namespace StoreManagement
 
             y += 10;
 
+            //CollumnName
             e.Graphics.DrawString("Mã sản phẩm", new Font("Microsoft Sans Serif",
             12, FontStyle.Bold), Brushes.Black, new Point(20, y));
             e.Graphics.DrawString("Tên sản phẩm", new Font("Microsoft Sans Serif",
@@ -356,7 +351,7 @@ namespace StoreManagement
             e.Graphics.DrawString("Giá", new Font("Microsoft Sans Serif",
             12, FontStyle.Bold), Brushes.Black, new Point(Right, y));
 
-
+            //DSSanPham
             for (int i = 0; i < dgvGioHang.RowCount - 1; i++)
             {
                 y += 20;
@@ -378,11 +373,13 @@ namespace StoreManagement
                 
             }
 
+
             y += 30;
             Point p3 = new Point(10, y);
             Point p4 = new Point(840, y);
             e.Graphics.DrawLine(blackPen, p3, p4);
 
+            //Footer
             y += 20;
             e.Graphics.DrawString(tongTien, new Font("Microsoft Sans Serif",
             12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));

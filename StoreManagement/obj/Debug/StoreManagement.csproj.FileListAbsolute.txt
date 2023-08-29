@@ -2,7 +2,6 @@ D:\LapTrinh\StoreManagement\StoreManagement\bin\Debug\StoreManagement.exe.config
 D:\LapTrinh\StoreManagement\StoreManagement\bin\Debug\StoreManagement.exe
 D:\LapTrinh\StoreManagement\StoreManagement\bin\Debug\StoreManagement.pdb
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.csproj.AssemblyReference.cache
-D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.csproj.SuggestedBindingRedirects.cache
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormHome.resources
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.Properties.Resources.resources
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.csproj.GenerateResource.cache
@@ -17,3 +16,6 @@ D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormNhapSo
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormDSPhanLoai.resources
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormThemKH.resources
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.csproj.ResolveComReference.cache
+D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormDSHoaDon.resources
+D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormThongKe.resources
+D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormCTHD.resources

@@ -30,14 +30,14 @@ namespace StoreManagement.BUS
             Dgv.DataSource = ThanhToanDAO.Instance.TimKiemSanPham(tenSanPham);
         }
 
-        public bool ThemChiTietHoaDon(ThanhToanDTO thanhToan)
+        public bool LuuCTHD(ThanhToanDTO thanhToan)
         {
-            return ThanhToanDAO.Instance.ThemChiTietHoaDon(thanhToan);
+            return ThanhToanDAO.Instance.LuuCTHD(thanhToan);
         }
 
         public string idGenerate(string prefix)
         {
-            int maxRow = ThanhToanDAO.Instance.idGenerate();
+            int maxRow = ThanhToanDAO.Instance.IdGenerate();
             
             string id = prefix + maxRow;
             return id;
