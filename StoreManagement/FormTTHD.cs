@@ -252,6 +252,10 @@ namespace StoreManagement
 
                 string maHoaDon = tbxMaHD.Text;
                 DateTime ngayBan = DateTime.Now;
+                if (dtpkNgayBan.Value < DateTime.Now)
+                {
+                    ngayBan = dtpkNgayBan.Value;
+                }
                 string maKH;
                 string ghiChu;
                 DialogResult result = MessageBox.Show("Bạn có muốn lưu tên khách hàng không?", "Khách hàng", MessageBoxButtons.YesNo);

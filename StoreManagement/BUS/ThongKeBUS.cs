@@ -44,7 +44,6 @@ namespace StoreManagement.BUS
         public int SLHoaDon()
         {
             string month = DateTime.Now.Month.ToString();
-            MessageBox.Show(month);
             return ThongKeDAO.Instance.SLHoaDon(month);
         }
     }

@@ -21,7 +21,7 @@ namespace StoreManagement
             cbxPhanLoai.DataSource = PhanLoaiDAO.Instance.DSPhanLoai();
             cbxPhanLoai.DisplayMember = "Tên loại";
             cbxPhanLoai.ValueMember = "Mã loại";
-            tbxMaSP.Text = SanPhamBUS.Instance.idGenerate("SP - ");
+            tbxMaSP.Text = SanPhamBUS.Instance.idGenerate("SP");
         }
 
         //Lay gia tri tu user

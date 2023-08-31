@@ -52,5 +52,13 @@ namespace StoreManagement.BUS
         {
             return PhanLoaiDAO.Instance.CheckExistence(id);
         }
+
+        public string idGenerate(string prefix)
+        {
+            int maxRow = PhanLoaiDAO.Instance.idGenerate();
+
+            string id = prefix + maxRow;
+            return id;
+        }
     }
 }

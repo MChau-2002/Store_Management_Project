@@ -114,6 +114,12 @@
     <Compile Include="FormThemKH.Designer.cs">
       <DependentUpon>FormThemKH.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormThemPhanLoai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThemPhanLoai.Designer.cs">
+      <DependentUpon>FormThemPhanLoai.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     <EmbeddedResource Include="FormThemKH.resx">
       <DependentUpon>FormThemKH.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormThemPhanLoai.resx">
+      <DependentUpon>FormThemPhanLoai.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormThongKe.resx">
       <DependentUpon>FormThongKe.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,6 +185,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="FormThemSP.resx">
       <DependentUpon>FormThemSP.cs</DependentUpon>
@@ -221,6 +231,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OIP-removebg-preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,3 +19,4 @@ D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.csproj.Res
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormDSHoaDon.resources
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormThongKe.resources
 D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormCTHD.resources
+D:\LapTrinh\StoreManagement\StoreManagement\obj\Debug\StoreManagement.FormThemPhanLoai.resources

@@ -21,6 +21,7 @@ namespace StoreManagement
             InitializeComponent();
         }
 
+
         private void FormDSPhanLoai_Load(object sender, EventArgs e)
         {
             dgvPhanLoai.DataSource = PhanLoaiDAO.Instance.DSPhanLoai();
@@ -43,39 +44,23 @@ namespace StoreManagement
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                GetValue();
-                if (PhanLoaiBUS.Instance.ThemLoai(phanLoai) == true)
-                {
-                    MessageBox.Show("Thêm thành công");
-                }
-                else
-                {
-                    MessageBox.Show("Thêm không thành công");
-                }
-
-                FormDSPhanLoai_Load(sender, e);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //MessageBox.Show("Lỗi: " + ex.Message);
-            }
+            FormThemPhanLoai them = new FormThemPhanLoai();
+            them.ShowDialog();
+            FormDSPhanLoai_Load(sender, e);
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
             try
             {
-                string id = dgvPhanLoai.SelectedCells[0].OwningRow.Cells["Mã loai"].Value.ToString();
+                string id = dgvPhanLoai.SelectedCells[0].OwningRow.Cells["Mã loại"].Value.ToString();
                 if (CheckExistence() == true && PhanLoaiBUS.Instance.XoaLoai(id) == true)
                 {
-                    MessageBox.Show("Xoa thông tin thành công");
+                    MessageBox.Show("Xoá thông tin thành công");
                 }
                 else
                 {
-                    MessageBox.Show("Xoa thông tin không thành công");
+                    MessageBox.Show("Xoá thông tin không thành công");
                 }
                 FormDSPhanLoai_Load(sender, e);
             }
@@ -90,14 +75,14 @@ namespace StoreManagement
         {
             try
             {
-                GetValue();
+                
                 if (PhanLoaiBUS.Instance.SuaLoai(phanLoai) == true)
                 {
-                    MessageBox.Show("Sua thông tin thành công");
+                    MessageBox.Show("Sửa thông tin thành công");
                 }
                 else
                 {
-                    MessageBox.Show("Sua thông tin không thành công");
+                    MessageBox.Show("Sửa thông tin không thành công");
                 }
                 FormDSPhanLoai_Load(sender, e);
             }

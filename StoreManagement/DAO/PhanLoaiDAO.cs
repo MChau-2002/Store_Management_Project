@@ -84,5 +84,12 @@ namespace StoreManagement.DAO
             }
             return result;
         }
+
+        public int idGenerate()
+        {
+            string query = "select * from PhanLoai";
+            int maxRow = DataProvider.Instance.ExecuteQuery(query).Rows.Count + 1;
+            return maxRow;
+        }
     }
 }
