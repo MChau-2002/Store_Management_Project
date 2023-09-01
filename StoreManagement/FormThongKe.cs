@@ -26,6 +26,7 @@ namespace StoreManagement
             tbxSLSP.Text = ThongKeBUS.Instance.SLSanPham().ToString();
             tbxSLPL.Text = ThongKeBUS.Instance.SLPhanLoai().ToString();
             tbxSLKH.Text = ThongKeBUS.Instance.SLKhachHang().ToString();
+            lblHoaDon.Text = "Tổng số hóa đơn đã tạo trong tháng " + DateTime.Now.Month.ToString() + ":";
             tbxHoaDon.Text = ThongKeBUS.Instance.SLHoaDon().ToString();
         }
 

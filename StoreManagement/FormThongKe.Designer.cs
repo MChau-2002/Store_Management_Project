@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chrtDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.gbxThongKe = new System.Windows.Forms.GroupBox();
+            this.lblHoaDon = new System.Windows.Forms.Label();
+            this.tbxHoaDon = new System.Windows.Forms.TextBox();
             this.lblSLKH = new System.Windows.Forms.Label();
             this.tbxSLKH = new System.Windows.Forms.TextBox();
             this.lblSLPL = new System.Windows.Forms.Label();
             this.tbxSLPL = new System.Windows.Forms.TextBox();
             this.lblSLSP = new System.Windows.Forms.Label();
             this.tbxSLSP = new System.Windows.Forms.TextBox();
-            this.lblHoaDon = new System.Windows.Forms.Label();
-            this.tbxHoaDon = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDoanhThu)).BeginInit();
             this.gbxThongKe.SuspendLayout();
             this.SuspendLayout();
@@ -51,23 +51,23 @@
             this.chrtDoanhThu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.chrtDoanhThu.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chrtDoanhThu.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.chrtDoanhThu.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chrtDoanhThu.Legends.Add(legend4);
             this.chrtDoanhThu.Location = new System.Drawing.Point(422, 0);
             this.chrtDoanhThu.Name = "chrtDoanhThu";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Doanh Thu";
-            this.chrtDoanhThu.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Doanh Thu";
+            this.chrtDoanhThu.Series.Add(series4);
             this.chrtDoanhThu.Size = new System.Drawing.Size(671, 594);
             this.chrtDoanhThu.TabIndex = 0;
             this.chrtDoanhThu.Text = "Biểu đồ doanh thu";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "BIỂU ĐỒ DOANH THU";
-            this.chrtDoanhThu.Titles.Add(title1);
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title4.Name = "Title1";
+            title4.Text = "BIỂU ĐỒ DOANH THU";
+            this.chrtDoanhThu.Titles.Add(title4);
             // 
             // gbxThongKe
             // 
@@ -89,6 +89,25 @@
             this.gbxThongKe.TabStop = false;
             this.gbxThongKe.Text = "Thống Kê";
             // 
+            // lblHoaDon
+            // 
+            this.lblHoaDon.AutoSize = true;
+            this.lblHoaDon.Location = new System.Drawing.Point(6, 216);
+            this.lblHoaDon.Name = "lblHoaDon";
+            this.lblHoaDon.Size = new System.Drawing.Size(175, 20);
+            this.lblHoaDon.TabIndex = 32;
+            this.lblHoaDon.Text = "Hóa đơn tạo tháng này:";
+            // 
+            // tbxHoaDon
+            // 
+            this.tbxHoaDon.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tbxHoaDon.Enabled = false;
+            this.tbxHoaDon.Location = new System.Drawing.Point(306, 210);
+            this.tbxHoaDon.Name = "tbxHoaDon";
+            this.tbxHoaDon.ReadOnly = true;
+            this.tbxHoaDon.Size = new System.Drawing.Size(92, 26);
+            this.tbxHoaDon.TabIndex = 33;
+            // 
             // lblSLKH
             // 
             this.lblSLKH.AutoSize = true;
@@ -102,10 +121,10 @@
             // 
             this.tbxSLKH.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tbxSLKH.Enabled = false;
-            this.tbxSLKH.Location = new System.Drawing.Point(185, 155);
+            this.tbxSLKH.Location = new System.Drawing.Point(306, 155);
             this.tbxSLKH.Name = "tbxSLKH";
             this.tbxSLKH.ReadOnly = true;
-            this.tbxSLKH.Size = new System.Drawing.Size(213, 26);
+            this.tbxSLKH.Size = new System.Drawing.Size(92, 26);
             this.tbxSLKH.TabIndex = 31;
             // 
             // lblSLPL
@@ -121,10 +140,10 @@
             // 
             this.tbxSLPL.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tbxSLPL.Enabled = false;
-            this.tbxSLPL.Location = new System.Drawing.Point(185, 100);
+            this.tbxSLPL.Location = new System.Drawing.Point(306, 100);
             this.tbxSLPL.Name = "tbxSLPL";
             this.tbxSLPL.ReadOnly = true;
-            this.tbxSLPL.Size = new System.Drawing.Size(213, 26);
+            this.tbxSLPL.Size = new System.Drawing.Size(92, 26);
             this.tbxSLPL.TabIndex = 29;
             // 
             // lblSLSP
@@ -140,30 +159,11 @@
             // 
             this.tbxSLSP.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tbxSLSP.Enabled = false;
-            this.tbxSLSP.Location = new System.Drawing.Point(185, 48);
+            this.tbxSLSP.Location = new System.Drawing.Point(306, 48);
             this.tbxSLSP.Name = "tbxSLSP";
             this.tbxSLSP.ReadOnly = true;
-            this.tbxSLSP.Size = new System.Drawing.Size(213, 26);
+            this.tbxSLSP.Size = new System.Drawing.Size(93, 26);
             this.tbxSLSP.TabIndex = 27;
-            // 
-            // lblHoaDon
-            // 
-            this.lblHoaDon.AutoSize = true;
-            this.lblHoaDon.Location = new System.Drawing.Point(6, 216);
-            this.lblHoaDon.Name = "lblHoaDon";
-            this.lblHoaDon.Size = new System.Drawing.Size(175, 20);
-            this.lblHoaDon.TabIndex = 32;
-            this.lblHoaDon.Text = "Hóa đơn tạo tháng này:";
-            // 
-            // tbxHoaDon
-            // 
-            this.tbxHoaDon.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tbxHoaDon.Enabled = false;
-            this.tbxHoaDon.Location = new System.Drawing.Point(185, 210);
-            this.tbxHoaDon.Name = "tbxHoaDon";
-            this.tbxHoaDon.ReadOnly = true;
-            this.tbxHoaDon.Size = new System.Drawing.Size(213, 26);
-            this.tbxHoaDon.TabIndex = 33;
             // 
             // FormThongKe
             // 

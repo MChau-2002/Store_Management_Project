@@ -21,7 +21,6 @@ namespace StoreManagement
             InitializeComponent();
         }
 
-
         private void FormDSPhanLoai_Load(object sender, EventArgs e)
         {
             dgvPhanLoai.DataSource = PhanLoaiDAO.Instance.DSPhanLoai();
@@ -75,7 +74,7 @@ namespace StoreManagement
         {
             try
             {
-                
+                GetValue();
                 if (PhanLoaiBUS.Instance.SuaLoai(phanLoai) == true)
                 {
                     MessageBox.Show("Sửa thông tin thành công");

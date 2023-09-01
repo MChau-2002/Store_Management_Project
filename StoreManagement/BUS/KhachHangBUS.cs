@@ -49,5 +49,10 @@ namespace StoreManagement.BUS
             string id = prefix + maxRow;
             return id;
         }
+
+        public bool ExistInHoaDon(string id)
+        {
+            return KhachHangDAO.Instance.ExistInHoaDon(id);
+        }
     }
 }

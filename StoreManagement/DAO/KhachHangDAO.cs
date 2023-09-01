@@ -1,6 +1,7 @@
 ﻿using StoreManagement.DTO;
 using StoreManagement.Functions;
 using System.Data;
+using System.Windows.Forms;
 
 namespace StoreManagement.DAO
 {
@@ -77,6 +78,19 @@ namespace StoreManagement.DAO
             string query = "select * from KhachHang";
             int maxRow = DataProvider.Instance.ExecuteQuery(query).Rows.Count + 1;
             return maxRow;
+        }
+
+        public bool ExistInHoaDon(string id)
+        {
+            string query = "select * from HoaDon where MaKH = @id";
+            object[] parameter = { id };
+            bool result = false;
+            int exist = DataProvider.Instance.ExecuteQuery(query, parameter).Rows.Count;
+            if (exist > 0)
+            {
+                result = true;
+            }
+            return result;
         }
     }
 }

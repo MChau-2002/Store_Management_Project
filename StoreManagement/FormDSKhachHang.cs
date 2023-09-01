@@ -64,20 +64,26 @@ namespace StoreManagement
             try
             {
                 string id = dgvKH.SelectedCells[0].OwningRow.Cells["Mã khách hàng"].Value.ToString();
-                if (KhachHangBUS.Instance.XoaKH(id) == true)
+                if(KhachHangBUS.Instance.ExistInHoaDon(id) == false)
                 {
-                    MessageBox.Show("Xóa thông tin thành công");
+                    if (KhachHangBUS.Instance.XoaKH(id) == true)
+                    {
+                        MessageBox.Show("Xóa thông tin thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa thông tin không thành công");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Xóa thông tin không thành công");
+                    MessageBox.Show("Không thể xóa khách hàng đã lưu trong hóa đơn");
                 }
                 FormDSKhachHang_Load(sender, e);
             }
             catch (Exception ex)
             {
-                throw ex;
-                //MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
