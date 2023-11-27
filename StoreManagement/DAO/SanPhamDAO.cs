@@ -30,7 +30,7 @@ namespace StoreManagement.DAO
                 " TenSanPham as 'Tên sản phẩm' ," +
                 " PhanLoai.TenLoai as 'Tên loại', " +
                 " SoLuong as 'Số lượng', " +
-                " GiaTien as 'Giá' " +
+                " GiaBan as 'Giá' " +
                 " from SanPham inner join PhanLoai on SanPham.MaLoai = PhanLoai.MaLoai";
             return DataProvider.Instance.ExecuteQuery(query);
         }
@@ -42,7 +42,7 @@ namespace StoreManagement.DAO
                 " TenSanPham as 'Tên sản phẩm' ," +
                 " PhanLoai.TenLoai as 'Tên loại' ," +
                 " SoLuong as 'Số lượng' ," +
-                " GiaTien as 'Giá' " +
+                " GiaBan as 'Giá' " +
                 " from SanPham inner join PhanLoai on SanPham.MaLoai = PhanLoai.MaLoai " +
                 " where TenSanPham like @tenSanPham ";
             object[] parameter = { "%" + tenSanPham + "%" };
@@ -52,9 +52,9 @@ namespace StoreManagement.DAO
         public bool ThemSanPham(SanPhamDTO sanPham)
         {
             string query = "insert into SanPham values ( @AnhSanPham , @MaSanPham ," +
-               " @TenSanPham , @MaLoai , @SoLuong , @GiaTien )";
+               " @TenSanPham , @MaLoai , @SoLuong , @GiaBan )";
             object[] parameters = { sanPham.Anh, sanPham.MaSanPham, sanPham.TenSanPham,
-                sanPham.MaLoai, sanPham.SoLuong, sanPham.GiaTien };
+                sanPham.MaLoai, sanPham.SoLuong, sanPham.GiaBan };
             bool result = false;
             if (DataProvider.Instance.ExecuteNonQuery(query, parameters) > 0)
             {
@@ -67,9 +67,9 @@ namespace StoreManagement.DAO
         {
             string query = "update SanPham set AnhSanPham = @AnhSanPham , " +
                 "TenSanPham = @TenSanPham , MaLoai = @MaLoai , " +
-               "SoLuong = @SoLuong , GiaTien = @GiaTien where MaSanPham = @MaSanPham ";
+               "SoLuong = @SoLuong , GiaBan = @GiaBan where MaSanPham = @MaSanPham ";
             object[] parameters = { sanPham.Anh, sanPham.TenSanPham,
-                sanPham.MaLoai, sanPham.SoLuong, sanPham.GiaTien , sanPham.MaSanPham };
+                sanPham.MaLoai, sanPham.SoLuong, sanPham.GiaBan , sanPham.MaSanPham };
             bool result = false;
             if (DataProvider.Instance.ExecuteNonQuery(query, parameters) > 0)
             {

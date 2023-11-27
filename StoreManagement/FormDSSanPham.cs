@@ -3,7 +3,9 @@ using StoreManagement.DAO;
 using StoreManagement.DTO;
 using StoreManagement.Functions;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
+using System.Data;
 
 namespace StoreManagement
 {
@@ -11,17 +13,39 @@ namespace StoreManagement
     {
         SanPhamDTO sanPham;
         FormThemSP them;
+        private DataTable dataTable;
+        private int itemsPerPage = 5; // Số mục trên mỗi trang
+        private int currentPage = 1;
+        private int totalItems;
+        private int totalPages;
+
         public FormDSSanPham()
         {
             InitializeComponent();
         }
         private void FormDSSanPham_Load(object sender, EventArgs e)
         {
+            
             //Dgv
             dgvSanPham.DataSource = SanPhamDAO.Instance.DSSanPham();
             dgvSanPham.Columns["Ảnh"].ReadOnly = true;
             dgvSanPham.Columns["Mã sản phẩm"].Visible = false;
+            // Sắp xếp tăng dần theo cột "Tên Cột"
+            dgvSanPham.Sort(dgvSanPham.Columns["Tên sản phẩm"], ListSortDirection.Ascending);
 
+            dataTable = SanPhamDAO.Instance.DSSanPham();
+            totalItems = dgvSanPham.Rows.Count;
+
+            // Tính toán số trang
+            totalPages = (int)Math.Ceiling((double)totalItems / itemsPerPage);
+
+            // Hiển thị trang đầu tiên
+            DisplayDataOnCurrentPage();
+
+            // Cập nhật thông tin trang
+            UpdatePageInfo();
+
+           
             //Dua du lieu tu bang NhaCungCap vao combobox
             cbxPhanLoai.DataSource = PhanLoaiDAO.Instance.DSPhanLoai();
             cbxPhanLoai.DisplayMember = "Tên loại";
@@ -38,6 +62,31 @@ namespace StoreManagement
             clearInfo();
         }
 
+        
+        private void DisplayDataOnCurrentPage()
+        {
+            // Lấy dữ liệu của trang hiện tại
+            int startIndex = (currentPage - 1) * itemsPerPage;
+            int endIndex = Math.Min(startIndex + itemsPerPage - 1, totalItems - 1);
+
+            // Tạo một DataTable mới chứa dữ liệu của trang hiện tại
+            DataTable currentPageData = dataTable.Clone();
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                currentPageData.ImportRow(dataTable.Rows[i]);
+            }
+
+            // Hiển thị dữ liệu trên DataGridView
+            dgvSanPham.DataSource = currentPageData;
+        }
+
+        private void UpdatePageInfo()
+        {
+            // Hiển thị thông tin về trang
+            lblPageview.Text = $"{currentPage} / {totalPages}";
+        }
+
+
         //Input
         public void GetValue()
         {
@@ -52,7 +101,7 @@ namespace StoreManagement
         }
 
         //Chon anh tu may tinh
-        private void pbxAnhSp_Click(object sender, EventArgs e)
+        private void PbxAnhSp_Click(object sender, EventArgs e)
         {
             ImageProcessing.Instance.ChooseImage(pbxAnhSp);
         }
@@ -152,6 +201,43 @@ namespace StoreManagement
             {
                 //throw ex;
                 MessageBox.Show("Lỗi: " + ex);
+            }
+        }
+
+
+        private void btnDauTrang_Click(object sender, EventArgs e)
+        {
+            currentPage = 1;
+            DisplayDataOnCurrentPage();
+            UpdatePageInfo();
+        }
+
+        private void btnFwd_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang tiếp theo không
+            if (currentPage < totalPages)
+            {
+                currentPage++;
+                DisplayDataOnCurrentPage();
+                UpdatePageInfo();
+            }
+        }
+
+        private void btnEPg_Click(object sender, EventArgs e)
+        {
+            currentPage = totalPages;
+            DisplayDataOnCurrentPage();
+            UpdatePageInfo();
+        }
+
+        private void btnBck_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang trước đó không
+            if (currentPage > 1)
+            {
+                currentPage--;
+                DisplayDataOnCurrentPage();
+                UpdatePageInfo();
             }
         }
 

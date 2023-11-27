@@ -37,21 +37,21 @@
             set { soLuong = value; }
         }
 
-        private float giaTien;
-        public float GiaTien
+        private float giaBan;
+        public float GiaBan
         {
-            get { return giaTien; }
-            set { giaTien = value; }
+            get { return giaBan; }
+            set { giaBan = value; }
         }
 
-        public SanPhamDTO(byte[] anh, string maSanPham, string tenSanPham, string maLoai, int soLuong, float giaTien)
+        public SanPhamDTO(byte[] anh, string maSanPham, string tenSanPham, string maLoai, int soLuong, float giaBan)
         {
             this.anh = anh;
             this.maSanPham = maSanPham;
             this.tenSanPham = tenSanPham;
             this.maLoai = maLoai;
             this.soLuong = soLuong;
-            this.giaTien = giaTien;
+            this.giaBan = giaBan;
         }
     }
 }

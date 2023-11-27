@@ -4,7 +4,7 @@ namespace StoreManagement.Functions
 {
     class Connection
     {
-        private static string ConnectionString = @"Data Source=DESKTOP-MHFTAB6;Initial Catalog=StoreManagement;Integrated Security=True";
+        private static readonly string ConnectionString = @"Data Source=DESKTOP-MHFTAB6;Initial Catalog=StoreManagement3;Integrated Security=True";
         
         public static SqlConnection Getconnection()
         {

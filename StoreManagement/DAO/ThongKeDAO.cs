@@ -26,7 +26,7 @@ namespace StoreManagement.DAO
 
         public DataTable BieuDoDoanhThu()
         {
-            string query = "select month(NgayBan) as Thang, sum(ThanhTien) as DoanhThu from HoaDon group by month(NgayBan)";
+            string query = "select month(NgayBan) as Thang, sum(TongTien) as DoanhThu from HoaDon group by month(NgayBan)";
             return DataProvider.Instance.ExecuteQuery(query);
         }
 

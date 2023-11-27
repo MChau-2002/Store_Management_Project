@@ -44,7 +44,7 @@ namespace StoreManagement.BUS
 
         public string idGenerate(string prefix)
         {
-            int maxRow = KhachHangDAO.Instance.idGenerate();
+            int maxRow = KhachHangDAO.Instance.IdGenerate();
 
             string id = prefix + maxRow;
             return id;

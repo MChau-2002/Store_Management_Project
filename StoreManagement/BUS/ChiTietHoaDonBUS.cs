@@ -1,10 +1,4 @@
 ﻿using StoreManagement.DAO;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreManagement.BUS
@@ -26,6 +20,11 @@ namespace StoreManagement.BUS
         public void TimKiemCTHD(DataGridView Dgv, string id)
         {
             Dgv.DataSource = ChiTietHoaDonDAO.Instance.TimKiemCTHD(id);
+        }
+
+        public void XemBienLai(DataGridView Dgv, string id)
+        {
+            Dgv.DataSource = ChiTietHoaDonDAO.Instance.XemBienLai(id);
         }
     }
 }

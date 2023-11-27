@@ -19,6 +19,18 @@ namespace StoreManagement
             InitializeComponent();
         }
 
+        private void FormHome_Load(object sender, EventArgs e)
+        {
+            if (NhanVienBUS.currentNhanVien != null)
+            {
+                lblTenNV.Text = NhanVienBUS.currentNhanVien.TenNhanVien.ToString();
+            }
+            else
+            {
+                lblTenNV.Text = "N/A";
+            }
+        }
+
         private void btnSanPham_Click(object sender, EventArgs e)
         {
             LoadingChildForm.Instance.OpenChildForm(new FormDSSanPham(), pnlForm);
@@ -54,5 +66,11 @@ namespace StoreManagement
             LoadingChildForm.Instance.OpenChildForm(new FormThongKe(), pnlForm);
             lblTittle.Text = "Thống Kê";
         }
+
+        private void lblTenNV_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

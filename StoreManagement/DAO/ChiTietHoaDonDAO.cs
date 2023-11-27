@@ -47,5 +47,22 @@ namespace StoreManagement.DAO
             object[] parameter = { id };
             return DataProvider.Instance.ExecuteQuery(query, parameter);
         }
+
+        public DataTable XemBienLai(string id)
+        {
+            string query = @"select ChiTietHoaDon.MaHoaDon as 'Mã hóa đơn' , " +
+                "ChiTietHoaDon.MaSanPham as 'Mã sản phẩm' , " +
+                "TenSanPham as 'Tên sản phẩm' , " +
+                "ChiTietHoaDon.SoLuong as 'Số lượng' , " +
+                "DonGia as 'Đơn giá' , " +
+                "GiamGia as 'Giảm giá' , " +
+                "ChiTietHoaDon.ThanhTien as 'Thành tiền' , " +
+                "HoaDon.NgayBan as 'Ngày bán' from ChiTietHoaDon " +
+                "inner join SanPham on ChiTietHoaDon.MaSanPham = SanPham.MaSanPham " +
+                "inner join HoaDon on ChiTietHoaDon.MaHoaDon = HoaDon.MaHoaDon " +
+                "where ChiTietHoaDon.MaHoaDon like @MaHoaDon";
+            object[] parameter = { id };
+            return DataProvider.Instance.ExecuteQuery(query, parameter);
+        }
     }
 }

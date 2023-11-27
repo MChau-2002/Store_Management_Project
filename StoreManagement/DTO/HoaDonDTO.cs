@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StoreManagement.DTO
 {
@@ -16,20 +12,19 @@ namespace StoreManagement.DTO
             set { maHoaDon = value; }
         }
 
+        private string maNhanVien;
+        public string MaNhanVien
+        {
+            get { return maNhanVien; }
+            set { maNhanVien = value; }
+        }
+
         private DateTime ngayBan;
 
         public DateTime NgayBan
         {
             get { return ngayBan; }
             set { ngayBan = value; }
-        }
-
-        private float thanhTien;
-
-        public float ThanhTien
-        {
-            get { return thanhTien; }
-            set { thanhTien = value; }
         }
 
         private string maKH;
@@ -40,21 +35,22 @@ namespace StoreManagement.DTO
             set { maKH = value; }
         }
 
-        private string ghiChu;
+        private float tongTien;
 
-        public string GhiChu
+        public float TongTien
         {
-            get { return ghiChu; }
-            set { ghiChu = value; }
+            get { return tongTien; }
+            set { tongTien = value; }
         }
 
-        public HoaDonDTO(string maHoaDon, DateTime ngayBan, float thanhTien, string maKH, string ghiChu)
+
+        public HoaDonDTO(string maHoaDon, string maNhanVien, DateTime ngayBan,  string maKH, float tongTien)
         {
             this.maHoaDon = maHoaDon;
+            this.maNhanVien = maNhanVien;
             this.ngayBan = ngayBan;
-            this.thanhTien = thanhTien;
             this.maKH = maKH;
-            this.ghiChu = ghiChu;
+            this.tongTien = tongTien;
         }
     }
 }

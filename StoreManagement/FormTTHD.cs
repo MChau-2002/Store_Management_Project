@@ -2,17 +2,10 @@
 using StoreManagement.DAO;
 using StoreManagement.DTO;
 using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace StoreManagement
 {
@@ -26,7 +19,7 @@ namespace StoreManagement
 
         int tongSLSanPham;
         string maHoaDon;
-
+        string maNhanvien = "";
         public FormTTHD()
         {
             InitializeComponent();
@@ -257,23 +250,20 @@ namespace StoreManagement
                     ngayBan = dtpkNgayBan.Value;
                 }
                 string maKH;
-                string ghiChu;
                 DialogResult result = MessageBox.Show("Bạn có muốn lưu tên khách hàng không?", "Khách hàng", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     luuKH.ShowDialog();
                     maKH = luuKH.chonKH();
-                    ghiChu = " ";
                 }
                 else
                 {
                     maKH = "KH1";
-                    ghiChu = " ";
                 }
 
-                float thanhTien = float.Parse(tbxThanhTien.Text);
+                float tongTien = float.Parse(tbxThanhTien.Text);
 
-                hoaDon = new HoaDonDTO(maHoaDon, ngayBan, thanhTien, maKH, ghiChu);
+                hoaDon = new HoaDonDTO(maHoaDon, maNhanvien, ngayBan, maKH, tongTien);
             }
         }
 
@@ -320,11 +310,11 @@ namespace StoreManagement
             string thanhTien = "Thành tiền: " + tbxThanhTien.Text;
 
             //Header
-            e.Graphics.DrawString("TẠP HÓA THÙY DUNG".ToUpper(), new Font("Microsoft Sans Serif",
-                20, FontStyle.Bold), Brushes.Black, new Point(280, 20));
-            e.Graphics.DrawString("280, tổ 15, khu phố Tám Thước, huyện Kiên Lương, tỉnh Kiên Giang".ToUpper(), 
+            e.Graphics.DrawString("SIÊU THỊ MINI".ToUpper(), new Font("Microsoft Sans Serif",
+                20, FontStyle.Bold), Brushes.Black, new Point(330, 20));
+            e.Graphics.DrawString("Tô ký, Tân Chánh Hiệp, quận 12, Hồ Chí Minh".ToUpper(), 
                 new Font("Microsoft Sans Serif",
-                12, FontStyle.Regular), Brushes.Black, new Point(150, 60));
+                12, FontStyle.Regular), Brushes.Black, new Point(200, 60));
             e.Graphics.DrawString("SDT: +84-024681012".ToUpper(), new Font("Microsoft Sans Serif",
                 12, FontStyle.Regular), Brushes.Black, new Point(330, 80));
             e.Graphics.DrawString("HÓA ĐƠN BÁN HÀNG".ToUpper(), new Font("Microsoft Sans Serif",
@@ -351,9 +341,9 @@ namespace StoreManagement
             e.Graphics.DrawString("Tên sản phẩm", new Font("Microsoft Sans Serif",
             12, FontStyle.Bold), Brushes.Black, new Point(180, y));
             e.Graphics.DrawString("Số lượng", new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(Right - 120, y));
+            12, FontStyle.Bold), Brushes.Black, new Point(500, y));
             e.Graphics.DrawString("Giá", new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(Right, y));
+            12, FontStyle.Bold), Brushes.Black, new Point(620, y));
 
             //DSSanPham
             for (int i = 0; i < dgvGioHang.RowCount - 1; i++)
@@ -371,9 +361,9 @@ namespace StoreManagement
                 e.Graphics.DrawString(tenSanPham, new Font("Microsoft Sans Serif",
                 12, FontStyle.Regular), Brushes.Black, new Point(180, y));
                 e.Graphics.DrawString(soLuong.ToString(), new Font("Microsoft Sans Serif",
-                12, FontStyle.Regular), Brushes.Black, new Point(Right - 120, y));
+                12, FontStyle.Regular), Brushes.Black, new Point(500, y));
                 e.Graphics.DrawString(donGia.ToString(), new Font("Microsoft Sans Serif",
-                12, FontStyle.Regular), Brushes.Black, new Point(Right, y));
+                12, FontStyle.Regular), Brushes.Black, new Point(620, y));
                 
             }
 

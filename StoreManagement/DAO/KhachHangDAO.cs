@@ -73,7 +73,7 @@ namespace StoreManagement.DAO
             return result;
         }
 
-        public int idGenerate()
+        public int IdGenerate()
         {
             string query = "select * from KhachHang";
             int maxRow = DataProvider.Instance.ExecuteQuery(query).Rows.Count + 1;

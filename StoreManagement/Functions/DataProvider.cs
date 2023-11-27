@@ -29,11 +29,11 @@ namespace StoreManagement.Functions
         {
             DataTable data = new DataTable();
             using (SqlConnection conn = Connection.Getconnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 try
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(query,conn);
                     if (parameters != null)
                     {
                         string[] temp = query.Split(' ');
@@ -60,10 +60,7 @@ namespace StoreManagement.Functions
                     throw ex;
                     //MessageBox.Show("Error: " + ex.Message);
                 }
-                finally
-                {
-                    conn.Close();
-                }
+                
                 return data;
             }
         }
@@ -71,11 +68,12 @@ namespace StoreManagement.Functions
         {
             int rowsAffected = 0;
             using (SqlConnection conn = Connection.Getconnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 try
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(query,conn);
+                    
                     if (parameters != null)
                     {
                         string[] temp = query.Split(' ');
@@ -100,10 +98,7 @@ namespace StoreManagement.Functions
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-                finally
-                {
-                    conn.Close();
-                }
+                
                 return rowsAffected;
             }
         }
@@ -112,11 +107,11 @@ namespace StoreManagement.Functions
             bool result = false;
             //int rowsAffected = 0;
             using (SqlConnection conn = Connection.Getconnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 try
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(query, conn);
                     if (parameters != null)
                     {
                         string[] temp = query.Split(' ');
@@ -135,19 +130,19 @@ namespace StoreManagement.Functions
                             cmd.Parameters.AddWithValue(listPara[i], parameters[i]);
                         }
                     }
-                    if(cmd.ExecuteScalar() != null)
+                    var scalarResult = cmd.ExecuteScalar();
+
+                    // Check for DBNull explicitly
+                    if (scalarResult != null && scalarResult != DBNull.Value)
                     {
-                        result = true;
+                        result = Convert.ToInt32(scalarResult) > 0;
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-                finally
-                {
-                    conn.Close();
-                }
+                
                 return result;
             }
         }

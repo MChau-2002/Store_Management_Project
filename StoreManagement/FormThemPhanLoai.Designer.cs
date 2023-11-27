@@ -99,6 +99,7 @@
             this.Controls.Add(this.lblTenKH);
             this.Controls.Add(this.lblMaPL);
             this.Name = "FormThemPhanLoai";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormThemPhanLoai";
             this.Load += new System.EventHandler(this.FormThemPhanLoai_Load);
             this.ResumeLayout(false);
