@@ -1,11 +1,8 @@
-create database StoreManagement
+﻿create database StoreManagement
 go
 
 use StoreManagement
 go
-
---drop database Test2
---go
 
 create table SanPham 
 (
@@ -14,7 +11,11 @@ create table SanPham
     TenSanPham nvarchar(50) not null,
     MaLoai varchar(10),
     SoLuong int not null,
-    GiaTien float not null,
+    GiaBan float not null,
+	GiamGia float,
+	SoLuongNhap int not null,
+	GiaNhap float not null
+
     
     constraint PK_SanPham primary key (MaSanPham)
 )
@@ -43,11 +44,11 @@ go
 create table HoaDon
 (
     MaHoaDon varchar(10) not null,
+	MaNhanVien varchar(10) not null,
     NgayBan date not null,
-    ThanhTien float not null,
     MaKH varchar(10) not null,
-    Ghichu nvarchar(50)
-
+	TongTien float not null,
+    
     constraint PK_HoaDon primary key (MaHoaDon)
 )
 go
@@ -60,8 +61,31 @@ create table ChiTietHoaDon
     DonGia float not null,
     GiamGia int not null,
     ThanhTien float not null,
+	GiamGiaSanPham float
 
     constraint PK_ChiTietHoaDon primary key (MaHoaDon,MaSanPham)
+)
+go
+
+create table NhanVien
+(
+    AnhNV image,
+    MaNhanVien varchar(10) not null,
+    TenNV nvarchar(25),
+    Sdt varchar(11)
+
+    constraint PK_NhanVien primary key (MaNhanVien)
+)
+go
+
+create table TaiKhoan
+(
+    TaiKhoan varchar(10) not null,
+	MaNhanVien varchar(10) not null,
+    MatKhau nvarchar(25),
+    VaiTro nvarchar(25),
+	constraint PK_TaiKhoan primary key (TaiKhoan),
+	constraint UK_MaNhanVien unique (MaNhanVien)
 )
 go
 
@@ -80,4 +104,18 @@ go
 alter table ChiTietHoaDon
 add constraint FK_SanPham_CTHD foreign key (MaSanPham) references SanPham(MaSanPham)
 go
+
+alter table TaiKhoan
+add constraint FK_TaiKhoan_NhanVien foreign key (MaNhanVien) references NhanVien(MaNhanVien)
+go
+
+insert into NhanVien values(null, 'NV1', 'Phạm Minh Châu', '0399366606')
+go
+
+insert into TaiKhoan values('1', 'NV1', '1', 'Admin')
+go
+
+insert into PhanLoai values('PL1', 'Cafe')
+go
+
 

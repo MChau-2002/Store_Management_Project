@@ -1,6 +1,7 @@
 ﻿using StoreManagement.BUS;
 using StoreManagement.DAO;
 using StoreManagement.DTO;
+using StoreManagement.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace StoreManagement
     public partial class FormDSPhanLoai : Form
     {
         PhanLoaiDTO phanLoai;
+        private DataTable dataTable;
         public FormDSPhanLoai()
         {
             InitializeComponent();
@@ -23,7 +25,10 @@ namespace StoreManagement
 
         private void FormDSPhanLoai_Load(object sender, EventArgs e)
         {
-            dgvPhanLoai.DataSource = PhanLoaiDAO.Instance.DSPhanLoai();
+            dataTable = PhanLoaiDAO.Instance.DSPhanLoai();
+            dgvPhanLoai.DataSource = dataTable;
+
+            PageProcessing.Instance.Load(dataTable, dgvPhanLoai, lblPageview);
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -103,7 +108,7 @@ namespace StoreManagement
             string id = dgvPhanLoai.SelectedCells[0].OwningRow.Cells["Mã loại"].Value.ToString();
             if (PhanLoaiBUS.Instance.CheckExistence(id) == true)
             {
-                MessageBox.Show("Không xóa được do đang có sản phẩm thuộc nhà cung cấp này");
+                MessageBox.Show("Không xóa được do đang có sản phẩm thuộc phân loại này");
                 result = false;
             }
             else
@@ -111,6 +116,28 @@ namespace StoreManagement
                 result = true;
             }
             return result;
+        }
+
+        private void btnDauTrang_Click(object sender, EventArgs e)
+        {
+            PageProcessing.Instance.DauTrang(dataTable, dgvPhanLoai, lblPageview);
+        }
+
+        private void btnFwd_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang tiếp theo không
+            PageProcessing.Instance.TrangKeTiep(dataTable, dgvPhanLoai, lblPageview);
+        }
+
+        private void btnEPg_Click(object sender, EventArgs e)
+        {
+            PageProcessing.Instance.TrangCuoi(dataTable, dgvPhanLoai, lblPageview);
+        }
+
+        private void btnBck_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang trước đó không
+            PageProcessing.Instance.TrangKeTruoc(dataTable, dgvPhanLoai, lblPageview);
         }
     }
 }

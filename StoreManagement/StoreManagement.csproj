@@ -33,6 +33,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -65,6 +83,19 @@
     <Compile Include="DAO\TaiKhoanDAO.cs" />
     <Compile Include="DAO\ThanhToanDAO.cs" />
     <Compile Include="DAO\ThongKeDAO.cs" />
+    <Compile Include="DTO\CurrentNhanVienDTO.cs" />
+    <Compile Include="FormDoiMK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDoiMK.Designer.cs">
+      <DependentUpon>FormDoiMK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDSNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDSNhanVien.Designer.cs">
+      <DependentUpon>FormDSNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="DTO\HoaDonDTO.cs" />
     <Compile Include="DTO\KhachHangDTO.cs" />
     <Compile Include="DTO\NhanVienDTO.cs" />
@@ -120,11 +151,23 @@
     <Compile Include="FormNhapSoLuong.Designer.cs">
       <DependentUpon>FormNhapSoLuong.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSignUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSignUp.Designer.cs">
+      <DependentUpon>FormSignUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormThemKH.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormThemKH.Designer.cs">
       <DependentUpon>FormThemKH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormThemNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThemNhanVien.Designer.cs">
+      <DependentUpon>FormThemNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="FormThemPhanLoai.cs">
       <SubType>Form</SubType>
@@ -132,11 +175,17 @@
     <Compile Include="FormThemPhanLoai.Designer.cs">
       <DependentUpon>FormThemPhanLoai.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormThongKe.cs">
+    <Compile Include="FormThongTinNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormThongKe.Designer.cs">
-      <DependentUpon>FormThongKe.cs</DependentUpon>
+    <Compile Include="FormThongTinNhanVien.Designer.cs">
+      <DependentUpon>FormThongTinNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTK.Designer.cs">
+      <DependentUpon>FormTK.cs</DependentUpon>
     </Compile>
     <Compile Include="FormTTHD.cs">
       <SubType>Form</SubType>
@@ -148,6 +197,7 @@
     <Compile Include="Functions\DataProvider.cs" />
     <Compile Include="Functions\ImageProcessing.cs" />
     <Compile Include="Functions\LoadingChildForm.cs" />
+    <Compile Include="Functions\PageProcessing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FormThemSP.cs">
@@ -156,6 +206,13 @@
     <Compile Include="FormThemSP.Designer.cs">
       <DependentUpon>FormThemSP.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="FormDoiMK.resx">
+      <DependentUpon>FormDoiMK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDSNhanVien.resx">
+      <DependentUpon>FormDSNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCTHD.resx">
       <DependentUpon>FormCTHD.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,14 +237,23 @@
     <EmbeddedResource Include="FormNhapSoLuong.resx">
       <DependentUpon>FormNhapSoLuong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSignUp.resx">
+      <DependentUpon>FormSignUp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormThemKH.resx">
       <DependentUpon>FormThemKH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormThemNhanVien.resx">
+      <DependentUpon>FormThemNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormThemPhanLoai.resx">
       <DependentUpon>FormThemPhanLoai.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormThongKe.resx">
-      <DependentUpon>FormThongKe.cs</DependentUpon>
+    <EmbeddedResource Include="FormThongTinNhanVien.resx">
+      <DependentUpon>FormThongTinNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTK.resx">
+      <DependentUpon>FormTK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTTHD.resx">
       <DependentUpon>FormTTHD.cs</DependentUpon>
@@ -205,6 +271,7 @@
     <EmbeddedResource Include="FormThemSP.resx">
       <DependentUpon>FormThemSP.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -249,6 +316,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\OIP-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

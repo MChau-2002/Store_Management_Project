@@ -9,7 +9,7 @@ namespace StoreManagement.Functions
     class DataProvider
     {
         private static DataProvider instance;
-
+       
         public static DataProvider Instance
         {
             get
@@ -146,5 +146,10 @@ namespace StoreManagement.Functions
                 return result;
             }
         }
+
+       
+          
+        
+        
     }
 }

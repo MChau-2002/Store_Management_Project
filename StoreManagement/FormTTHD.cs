@@ -1,6 +1,7 @@
 ﻿using StoreManagement.BUS;
 using StoreManagement.DAO;
 using StoreManagement.DTO;
+using StoreManagement.Functions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,28 +16,32 @@ namespace StoreManagement
         HoaDonDTO hoaDon;
         FormNhapSoLuong nhapSLuong;
 
-        DataTable gioHang;
+        private DataTable dataTable;
+        private DataTable gioHang;
 
-        int tongSLSanPham;
         string maHoaDon;
-        string maNhanvien = "";
+        string maNhanvien = NhanVienBUS.currentNhanVien.MaNhanVien;
+
         public FormTTHD()
         {
             InitializeComponent();
         }
 
-        private void FormTTHD_Load(object sender, EventArgs e)
+        private void FormTTHD_Load(object sender, EventArgs e) 
         {
-            dgvSanPham.DataSource = SanPhamDAO.Instance.DSSanPham();
+            dataTable = SanPhamDAO.Instance.DSSanPham();
+            dgvSanPham.DataSource = dataTable;
 
             dgvSanPham.Columns["Mã sản phẩm"].Visible = false;
+            
 
             DataGridViewImageColumn img = new DataGridViewImageColumn();
             img = (DataGridViewImageColumn)dgvSanPham.Columns[0];
             img.ImageLayout = DataGridViewImageCellLayout.Zoom;
 
-            LoadGioHang();
-            dgvGioHang.DataSource = gioHang;
+            PageProcessing.Instance.Load(dataTable, dgvSanPham, lblPageview);
+
+            gioHang = LoadGioHang();
 
             btnTaoHoaDon.Enabled = true;
             if (btnTaoHoaDon.Enabled == true)
@@ -44,11 +49,9 @@ namespace StoreManagement
                 pnlButton.Enabled = false;
             }
             dtpkNgayBan.Value = DateTime.Today;
-
-            tongSLSanPham = (int)dgvSanPham.CurrentRow.Cells["Số lượng"].Value;
         }
 
-        private void LoadGioHang()
+        private DataTable LoadGioHang()
         {
             gioHang = new DataTable();
             if (gioHang.Columns.Count == 0)
@@ -57,7 +60,32 @@ namespace StoreManagement
                 gioHang.Columns.Add("TÊN SẢN PHẨM", typeof(string));
                 gioHang.Columns.Add("SỐ LƯỢNG", typeof(int));
                 gioHang.Columns.Add("GIÁ BÁN", typeof(float));
+                gioHang.Columns.Add("GIẢM GIÁ", typeof(float));
+                gioHang.Columns.Add("THÀNH TIỀN", typeof(float));
             }
+            return gioHang;
+        }
+
+        private void btnDauTrang_Click(object sender, EventArgs e)
+        {
+            PageProcessing.Instance.DauTrang(dataTable, dgvSanPham, lblPageview);
+        }
+
+        private void btnFwd_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang tiếp theo không
+            PageProcessing.Instance.TrangKeTiep(dataTable, dgvSanPham, lblPageview);
+        }
+
+        private void btnEPg_Click(object sender, EventArgs e)
+        {
+            PageProcessing.Instance.TrangCuoi(dataTable, dgvSanPham, lblPageview);
+        }
+
+        private void btnBck_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang trước đó không
+            PageProcessing.Instance.TrangKeTruoc(dataTable, dgvSanPham, lblPageview);
         }
 
         private void btnTaoHoaDon_Click(object sender, EventArgs e)
@@ -77,9 +105,22 @@ namespace StoreManagement
             {
                 string maSanPham = dgvSanPham.SelectedRows[0].Cells["Mã sản phẩm"].Value.ToString();
                 string tenSanPham = dgvSanPham.SelectedRows[0].Cells["Tên sản phẩm"].Value.ToString();
-                float giaTien = float.Parse(dgvSanPham.SelectedRows[0].Cells["Giá"].Value.ToString());
+                float giaTien = float.Parse(dgvSanPham.SelectedRows[0].Cells["Giá bán"].Value.ToString());
+                float giamGia;
+                if (dgvSanPham.SelectedRows[0].Cells["Giảm giá"].Value.ToString() != "")
+                {
+                    giamGia = float.Parse(dgvSanPham.SelectedRows[0].Cells["Giảm giá"].Value.ToString());
+                }
+                else
+                {
+                    giamGia = 0;
+                }
+
                 bool found = false;
-                int soLuong;
+
+                int soLuong = 0;
+                float thanhTien;
+                int tongSLSanPham;
 
                 //Get So Luong
                 nhapSLuong = new FormNhapSoLuong();
@@ -92,20 +133,20 @@ namespace StoreManagement
                     //Check xem Sp đa ton tai trong gio hang chua
                     foreach (DataGridViewRow row in dgvGioHang.Rows)
                     {
-                        if (row.Cells["MÃ SẢN PHẨM"].Value != null && row.Cells["MÃ SẢN PHẨM"].Value.ToString() == maSanPham)
+                        if (row.Cells["MÃ SẢN PHẨM"].Value?.ToString() == maSanPham)
                         {
-                            tongSLSanPham = (int)dgvSanPham.SelectedRows[0].Cells["Số lượng"].Value - (int)row.Cells["SỐ LƯỢNG"].Value;
+                            tongSLSanPham = (int)dgvSanPham.SelectedRows[0].Cells["Tồn kho"].Value - (int)row.Cells["SỐ LƯỢNG"].Value;
                             if (ThanhToanBUS.Instance.checkSoLuong(soLuong, tongSLSanPham) >= 0)
                             {
                                 row.Cells["SỐ LƯỢNG"].Value = (int)row.Cells["SỐ LƯỢNG"].Value + soLuong;
-                                tongSLSanPham = ThanhToanBUS.Instance.checkSoLuong(soLuong, tongSLSanPham);
                             }
                             found = true;
+                            break;
                         }
                     }
                     if (found == false || dgvGioHang.Rows[0].Cells["MÃ SẢN PHẨM"].Value == null)
                     {
-                        tongSLSanPham = (int)dgvSanPham.SelectedRows[0].Cells["Số lượng"].Value;
+                        tongSLSanPham = (int)dgvSanPham.SelectedRows[0].Cells["Tồn kho"].Value;
                         if (ThanhToanBUS.Instance.checkSoLuong(soLuong, tongSLSanPham) >= 0)
                         {
                             DataRow gioHangRow = gioHang.NewRow();
@@ -113,10 +154,10 @@ namespace StoreManagement
                             gioHangRow["TÊN SẢN PHẨM"] = tenSanPham;
                             gioHangRow["SỐ LƯỢNG"] = soLuong;
                             gioHangRow["GIÁ BÁN"] = giaTien;
-
+                            gioHangRow["GIẢM GIÁ"] = giamGia;
+                            thanhTien = (float)(soLuong * giaTien) - (soLuong * giaTien * (giamGia / 100));
+                            gioHangRow["THÀNH TIỀN"] = thanhTien;
                             gioHang.Rows.Add(gioHangRow);
-
-                            tongSLSanPham = ThanhToanBUS.Instance.checkSoLuong(soLuong, tongSLSanPham);
                         }
                     }
                 }
@@ -157,6 +198,14 @@ namespace StoreManagement
             dgvSanPham.DataSource = SanPhamDAO.Instance.DSSanPham();
         }
 
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvGioHang.SelectedRows)
+            {
+                dgvGioHang.Rows.RemoveAt(row.Index);
+            }
+        }
+
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
             if(dgvGioHang.RowCount > 1)
@@ -192,30 +241,27 @@ namespace StoreManagement
             float tongTien;
             float result = 0;
             float giamGia = 0;
-            List<string> listMaSP = new List<string>();
-            List<int> listSoLuong = new List<int>();
-            List<float> listGia = new List<float>();
+
+            List<float> listThanhTien = new List<float>();
             try
             {
                 for (int i = 0; i < dgvGioHang.RowCount - 1; i++)
                 {
-                    listMaSP.Add(dgvGioHang.Rows[i].Cells["MÃ SẢN PHẨM"].Value.ToString());
-                    listSoLuong.Add((int)dgvGioHang.Rows[i].Cells["SỐ LƯỢNG"].Value);
-                    listGia.Add(float.Parse(dgvGioHang.Rows[i].Cells["GIÁ BÁN"].Value.ToString()));
+                    listThanhTien.Add(float.Parse(dgvGioHang.Rows[i].Cells["THÀNH TIỀN"].Value.ToString()));
                 }
 
                 if (dgvGioHang.RowCount > 1)
                 {
 
-                    if (dgvGioHang.Rows[0].Cells["SỐ LƯỢNG"].Value != null && dgvGioHang.Rows[0].Cells["GIÁ BÁN"].Value != null)
+                    if (dgvGioHang.Rows[0].Cells["THÀNH TIỀN"].Value != null && dgvGioHang.Rows[0].Cells["GIÁ BÁN"].Value != null)
                     {
                         for (int i = 0; i < dgvGioHang.RowCount - 1; i++)
                         {
-                            result += (float)listSoLuong[i] * listGia[i];
+                            result += listThanhTien[i];
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -227,8 +273,8 @@ namespace StoreManagement
             {
                 giamGia = float.Parse(tbxGiamGia.Text) / 100;
             }
-            tbxThanhTien.Text = (tongTien - (tongTien * giamGia)).ToString();
-            tbxDonGia.Text = tongTien.ToString();
+            tbxPhaiThanhToan.Text = (tongTien - (tongTien * giamGia)).ToString();
+            tbxTongTien.Text = tongTien.ToString();
             return result;
         }
 
@@ -237,6 +283,27 @@ namespace StoreManagement
             TinhTien();
         }
 
+        private void dgvGioHang_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int soLuong;
+            int tongSLSanPham;
+            DataGridViewRow row = dgvGioHang.SelectedRows[0];
+
+            //Get So Luong
+            nhapSLuong = new FormNhapSoLuong();
+            nhapSLuong.ShowDialog();
+            soLuong = nhapSLuong.GetAmount();
+
+            tongSLSanPham = (int)dgvSanPham.SelectedRows[0].Cells["Tồn kho"].Value - (int)row.Cells["SỐ LƯỢNG"].Value;
+            if (ThanhToanBUS.Instance.checkSoLuong(soLuong, tongSLSanPham) >= 0 && soLuong > 0)
+            {
+                row.Cells["SỐ LƯỢNG"].Value = soLuong;
+            }
+            else if (soLuong <= 0)
+            {
+                btnXoa_Click(sender, e);
+            }
+        }
         private void GetValueHoaDon()
         {
             if(dgvGioHang.RowCount > 1)
@@ -250,18 +317,9 @@ namespace StoreManagement
                     ngayBan = dtpkNgayBan.Value;
                 }
                 string maKH;
-                DialogResult result = MessageBox.Show("Bạn có muốn lưu tên khách hàng không?", "Khách hàng", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    luuKH.ShowDialog();
-                    maKH = luuKH.chonKH();
-                }
-                else
-                {
-                    maKH = "KH1";
-                }
-
-                float tongTien = float.Parse(tbxThanhTien.Text);
+                luuKH.ShowDialog();
+                maKH = luuKH.chonKH();
+                float tongTien = float.Parse(tbxPhaiThanhToan.Text);
 
                 hoaDon = new HoaDonDTO(maHoaDon, maNhanvien, ngayBan, maKH, tongTien);
             }
@@ -271,7 +329,7 @@ namespace StoreManagement
         public void LuuCTHD()
         {
             maHoaDon = tbxMaHD.Text;
-            float thanhTien = float.Parse(tbxThanhTien.Text);
+            float thanhTien = float.Parse(tbxPhaiThanhToan.Text);
 
             int giamGia = 0;
             if (tbxGiamGia.Text != "")
@@ -284,8 +342,9 @@ namespace StoreManagement
                 string maSanPham = dgvGioHang.Rows[i].Cells["MÃ SẢN PHẨM"].Value.ToString();
                 int soLuong = (int)dgvGioHang.Rows[i].Cells["SỐ LƯỢNG"].Value;
                 float donGia = float.Parse(dgvGioHang.Rows[i].Cells["GIÁ BÁN"].Value.ToString());
-                
-                thanhToan = new ThanhToanDTO(maHoaDon, maSanPham, soLuong, donGia, giamGia, thanhTien);
+                float giamGiaSP = float.Parse(dgvGioHang.Rows[i].Cells["GIẢM GIÁ"].Value.ToString());
+
+                thanhToan = new ThanhToanDTO(maHoaDon, maSanPham, soLuong, donGia, giamGia, thanhTien, giamGiaSP);
                 ThanhToanBUS.Instance.UpdateSoLuong(soLuong, maSanPham);
                 ThanhToanBUS.Instance.LuuCTHD(thanhToan);
             }
@@ -294,25 +353,26 @@ namespace StoreManagement
         public void ResetValue()
         {
             tbxMaHD.Text = "";
-            tbxDonGia.Text = "";
+            tbxTongTien.Text = "";
             tbxGiamGia.Text = "";
-            tbxThanhTien.Text = "";
+            tbxPhaiThanhToan.Text = "";
             gioHang.Rows.Clear();
         }
 
-        //In hoa don
+        //Thiet ke Hoa Don
         private void pDHoaDon_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             string maHD = "Mã hóa đơn: " + tbxMaHD.Text;
             string ngayBan = "Ngày: " + dtpkNgayBan.Value.ToString();
-            string tongTien = "Tổng tiền: " + tbxDonGia.Text;
-            string giamGia = "Giảm giá: " + tbxGiamGia.Text + "%";
-            string thanhTien = "Thành tiền: " + tbxThanhTien.Text;
+
+            string tongTien = "Tổng tiền: " + tbxTongTien.Text;
+            string giamGiaHD = "Giảm giá: " + tbxGiamGia.Text + "%";
+            string phaiThanhToan = "Thành tiền: " + tbxPhaiThanhToan.Text;
 
             //Header
             e.Graphics.DrawString("SIÊU THỊ MINI".ToUpper(), new Font("Microsoft Sans Serif",
                 20, FontStyle.Bold), Brushes.Black, new Point(330, 20));
-            e.Graphics.DrawString("Tô ký, Tân Chánh Hiệp, quận 12, Hồ Chí Minh".ToUpper(), 
+            e.Graphics.DrawString("Tô ký, Tân Chánh Hiệp, quận 12, Hồ Chí Minh".ToUpper(),
                 new Font("Microsoft Sans Serif",
                 12, FontStyle.Regular), Brushes.Black, new Point(200, 60));
             e.Graphics.DrawString("SDT: +84-024681012".ToUpper(), new Font("Microsoft Sans Serif",
@@ -336,13 +396,16 @@ namespace StoreManagement
             y += 10;
 
             //CollumnName
-            e.Graphics.DrawString("Mã sản phẩm", new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(20, y));
+
             e.Graphics.DrawString("Tên sản phẩm", new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(20, y));
+            e.Graphics.DrawString("Tồn kho", new Font("Microsoft Sans Serif",
             12, FontStyle.Bold), Brushes.Black, new Point(180, y));
-            e.Graphics.DrawString("Số lượng", new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(500, y));
             e.Graphics.DrawString("Giá", new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(340, y));
+            e.Graphics.DrawString("Giảm giá", new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(480, y));
+            e.Graphics.DrawString("Thành tiền", new Font("Microsoft Sans Serif",
             12, FontStyle.Bold), Brushes.Black, new Point(620, y));
 
             //DSSanPham
@@ -350,21 +413,25 @@ namespace StoreManagement
             {
                 y += 20;
 
-                string maSanPham = dgvGioHang.Rows[i].Cells["MÃ SẢN PHẨM"].Value.ToString();
                 string tenSanPham = dgvGioHang.Rows[i].Cells["TÊN SẢN PHẨM"].Value.ToString();
-                int soLuong = (int)dgvGioHang.Rows[i].Cells["SỐ LƯỢNG"].Value;
-                float donGia = float.Parse(dgvGioHang.Rows[i].Cells["GIÁ BÁN"].Value.ToString());
+                string soLuong = dgvGioHang.Rows[i].Cells["SỐ LƯỢNG"].Value.ToString();
+                string donGia = dgvGioHang.Rows[i].Cells["GIÁ BÁN"].Value.ToString();
+                string giamGia = dgvGioHang.Rows[i].Cells["GIẢM GIÁ"].Value.ToString();
+                string thanhTien = dgvGioHang.Rows[i].Cells["THÀNH TIỀN"].Value.ToString();
 
 
-                e.Graphics.DrawString(maSanPham, new Font("Microsoft Sans Serif",
-                12, FontStyle.Regular), Brushes.Black, new Point(20, y));
+
                 e.Graphics.DrawString(tenSanPham, new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(20, y));
+                e.Graphics.DrawString(soLuong, new Font("Microsoft Sans Serif",
                 12, FontStyle.Regular), Brushes.Black, new Point(180, y));
-                e.Graphics.DrawString(soLuong.ToString(), new Font("Microsoft Sans Serif",
-                12, FontStyle.Regular), Brushes.Black, new Point(500, y));
-                e.Graphics.DrawString(donGia.ToString(), new Font("Microsoft Sans Serif",
+                e.Graphics.DrawString(donGia, new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(340, y));
+                e.Graphics.DrawString(giamGia, new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(480, y));
+                e.Graphics.DrawString(thanhTien, new Font("Microsoft Sans Serif",
                 12, FontStyle.Regular), Brushes.Black, new Point(620, y));
-                
+
             }
 
 
@@ -376,19 +443,22 @@ namespace StoreManagement
             //Footer
             y += 20;
             e.Graphics.DrawString(tongTien, new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));
+            12, FontStyle.Bold), Brushes.Black, new Point(620 - 80, y));
 
             y += 20;
-            e.Graphics.DrawString(giamGia, new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));
+            e.Graphics.DrawString(giamGiaHD, new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(620 - 80, y));
 
             y += 20;
-            e.Graphics.DrawString(thanhTien, new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));
+            e.Graphics.DrawString(phaiThanhToan, new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(620 - 80, y));
 
             y += 50;
             e.Graphics.DrawString("Xin cảm ơn quý khách!", new Font("Microsoft Sans Serif",
             14, FontStyle.Bold), Brushes.Black, new Point(300, y));
         }
+
+        
+
     }
 }

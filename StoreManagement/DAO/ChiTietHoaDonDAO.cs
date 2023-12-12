@@ -22,13 +22,14 @@ namespace StoreManagement.DAO
             }
         }
 
-        public DataTable ChiTietHoaDon() 
+        public DataTable ChiTietHoaDon()
         {
             string query = "select MaHoaDon as 'Mã hóa đơn'," +
                 "TenSanPham as 'Tên sản phẩm'," +
                 "ChiTietHoaDon.SoLuong as 'Số lượng'," +
                 "DonGia as 'Đơn giá'," +
-                "GiamGia as 'Giảm giá'," +
+                "ChiTietHoaDon.GiamGia as 'Giảm giá'," +
+                "GiamGiaSanPham as 'Giảm giá sản phẩm' , " +
                 "ThanhTien as 'Thành tiền'" +
                 "from ChiTietHoaDon inner join SanPham on ChiTietHoaDon.MaSanPham = SanPham.MaSanPham";
             return DataProvider.Instance.ExecuteQuery(query);
@@ -40,7 +41,8 @@ namespace StoreManagement.DAO
                 "TenSanPham as 'Tên sản phẩm' ," +
                 "ChiTietHoaDon.SoLuong as 'Số lượng' ," +
                 "DonGia as 'Đơn giá' ," +
-                "GiamGia as 'Giảm giá' ," +
+                "ChiTietHoaDon.GiamGia as 'Giảm giá' ," +
+                "GiamGiaSanPham as 'Giảm giá sản phẩm' , " +
                 "ThanhTien as 'Thành tiền' " +
                 "from ChiTietHoaDon inner join SanPham on ChiTietHoaDon.MaSanPham = SanPham.MaSanPham " +
                 "where MaHoaDon like @MaHoaDon";
@@ -55,7 +57,8 @@ namespace StoreManagement.DAO
                 "TenSanPham as 'Tên sản phẩm' , " +
                 "ChiTietHoaDon.SoLuong as 'Số lượng' , " +
                 "DonGia as 'Đơn giá' , " +
-                "GiamGia as 'Giảm giá' , " +
+                "ChiTietHoaDon.GiamGia as 'Giảm giá' , " +
+                "GiamGiaSanPham as 'Giảm giá sản phẩm' , " +
                 "ChiTietHoaDon.ThanhTien as 'Thành tiền' , " +
                 "HoaDon.NgayBan as 'Ngày bán' from ChiTietHoaDon " +
                 "inner join SanPham on ChiTietHoaDon.MaSanPham = SanPham.MaSanPham " +

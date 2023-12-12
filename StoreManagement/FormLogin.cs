@@ -1,13 +1,5 @@
 ﻿using StoreManagement.BUS;
-using StoreManagement.DAO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreManagement
@@ -22,6 +14,21 @@ namespace StoreManagement
         private const string defaultUsernameText = " Username";
         private const string defaultPasswordText = " Password";
 
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            if (TaiKhoanBUS.Instance.CheckAccExist() == false)
+            {
+                btnDangKy.Visible = true;
+                btnDangKy.Enabled = true;
+                btnLogin.Enabled = false;
+            }
+            else
+            {
+                btnDangKy.Visible = false;
+                btnDangKy.Enabled = false;
+                btnLogin.Enabled = true;
+            }
+        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -41,9 +48,10 @@ namespace StoreManagement
                 if (TaiKhoanBUS.Instance.LoginMethod(tbxTaiKhoan.Text, tbxMatKhau.Text) == true)
                 {
                     FormHome home = new FormHome();
-                    NhanVienBUS.Instance.GetNhanVien(tbxTaiKhoan.Text);
-                    home.Show();
+                    NhanVienBUS.Instance.SetCurrentNhanVien(tbxTaiKhoan.Text);
                     this.Hide();
+                    home.ShowDialog();
+                    this.Close();
                 }
                 else 
                 {
@@ -55,6 +63,14 @@ namespace StoreManagement
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
             }
             
+        }
+
+        private void btnDangKy_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormSignUp signUp = new FormSignUp();
+            signUp.ShowDialog();
+            this.Show();
         }
     }
 }

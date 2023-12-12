@@ -44,7 +44,29 @@
             set { giaBan = value; }
         }
 
-        public SanPhamDTO(byte[] anh, string maSanPham, string tenSanPham, string maLoai, int soLuong, float giaBan)
+        private int soLuongNhap;
+        public int SoLuongNhap
+        {
+            get { return soLuongNhap; }
+            set { soLuongNhap = value; }
+        }
+
+
+        private float giaNhap;
+        public float GiaNhap
+        {
+            get { return giaNhap; }
+            set { giaNhap = value; }
+        }
+
+        private float giamGia;
+        public float GiamGia
+        {
+            get { return giamGia; }
+            set { giamGia = value; }
+        }
+
+        public SanPhamDTO(byte[] anh, string maSanPham, string tenSanPham, string maLoai, int soLuong, float giaBan, int soLuongNhap, float giaNhap, float giamGia)
         {
             this.anh = anh;
             this.maSanPham = maSanPham;
@@ -52,6 +74,9 @@
             this.maLoai = maLoai;
             this.soLuong = soLuong;
             this.giaBan = giaBan;
+            this.soLuongNhap = soLuongNhap;
+            this.giaNhap = giaNhap;
+            this.giamGia = giamGia;
         }
     }
 }

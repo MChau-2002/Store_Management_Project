@@ -25,14 +25,6 @@ namespace StoreManagement.DAO
         }
         public ThanhToanDAO() { }
 
-        /*public DataTable TaoGioHang()
-        {
-            string query = "select ChiTietHoaDon.MaSanPham as 'MÃ SẢN PHẨM' ," +
-                " SanPham.TenSanPham as 'TÊN SẢN PHẨM' ," +
-                " ChiTietHoaDon.SoLuong as 'SỐ LƯỢNG' , DonGia as 'GIÁ BÁN'"  +
-                " from ChiTietHoaDon inner join SanPham on ChiTietHoaDon.MaSanPham = SanPham.MaSanPham";
-            return DataProvider.Instance.ExecuteQuery(query);
-        }*/
 
         public DataTable TimKiemSanPham(string tenSanPham)
         {
@@ -41,7 +33,7 @@ namespace StoreManagement.DAO
                 " TenSanPham as 'Tên sản phẩm' ," +
                 " PhanLoai.TenLoai as 'Tên loại' ," +
                 " SoLuong as 'Số lượng' ," +
-                " GiaTien as 'Giá' " +
+                " GiaBan as 'Giá' " +
                 " from SanPham inner join PhanLoai on SanPham.MaLoai = PhanLoai.MaLoai " +
                 " where TenSanPham like @tenSanPham "; ;
             object[] parameter = { "%" + tenSanPham + "%" };
@@ -58,8 +50,8 @@ namespace StoreManagement.DAO
         public bool LuuCTHD(ThanhToanDTO thanhToan)
         {
             bool result = false;
-            string query = "insert into ChiTietHoaDon values ( @MaHoaDon , @MaSanPham , @SoLuong , @DonGia , @GiamGia , @ThanhTien )";
-            object[] parameters = { thanhToan.MaHoaDon, thanhToan.MaSanPham, thanhToan.SoLuong, thanhToan.DonGia, thanhToan.GiamGia, thanhToan.ThanhTien };
+            string query = "insert into ChiTietHoaDon values ( @MaHoaDon , @MaSanPham , @SoLuong , @DonGia , @GiamGia , @ThanhTien , @GiamGiaSP )";
+            object[] parameters = { thanhToan.MaHoaDon, thanhToan.MaSanPham, thanhToan.SoLuong, thanhToan.DonGia, thanhToan.GiamGia, thanhToan.ThanhTien, thanhToan.GiamGiaSP };
 
             if (DataProvider.Instance.ExecuteNonQuery(query, parameters) > 0)
             {

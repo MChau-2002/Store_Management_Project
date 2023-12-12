@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlLogin = new System.Windows.Forms.Panel();
+            this.btnDangKy = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.tbxMatKhau = new System.Windows.Forms.TextBox();
             this.tbxTaiKhoan = new System.Windows.Forms.TextBox();
@@ -39,6 +40,7 @@
             // 
             // pnlLogin
             // 
+            this.pnlLogin.Controls.Add(this.btnDangKy);
             this.pnlLogin.Controls.Add(this.btnLogin);
             this.pnlLogin.Controls.Add(this.tbxMatKhau);
             this.pnlLogin.Controls.Add(this.tbxTaiKhoan);
@@ -46,17 +48,30 @@
             this.pnlLogin.Controls.Add(this.lblMaPL);
             this.pnlLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLogin.Location = new System.Drawing.Point(0, 0);
+            this.pnlLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlLogin.Name = "pnlLogin";
-            this.pnlLogin.Size = new System.Drawing.Size(449, 263);
+            this.pnlLogin.Size = new System.Drawing.Size(505, 329);
             this.pnlLogin.TabIndex = 0;
+            // 
+            // btnDangKy
+            // 
+            this.btnDangKy.AutoSize = true;
+            this.btnDangKy.Location = new System.Drawing.Point(334, 229);
+            this.btnDangKy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDangKy.Name = "btnDangKy";
+            this.btnDangKy.Size = new System.Drawing.Size(110, 38);
+            this.btnDangKy.TabIndex = 31;
+            this.btnDangKy.Text = "Đăng ký";
+            this.btnDangKy.UseVisualStyleBackColor = true;
+            this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
             // 
             // btnLogin
             // 
             this.btnLogin.AutoSize = true;
-            this.btnLogin.Location = new System.Drawing.Point(177, 183);
+            this.btnLogin.Location = new System.Drawing.Point(199, 229);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(85, 26);
+            this.btnLogin.Size = new System.Drawing.Size(110, 38);
             this.btnLogin.TabIndex = 30;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -64,46 +79,50 @@
             // 
             // tbxMatKhau
             // 
-            this.tbxMatKhau.Location = new System.Drawing.Point(161, 119);
+            this.tbxMatKhau.Location = new System.Drawing.Point(181, 149);
             this.tbxMatKhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxMatKhau.Name = "tbxMatKhau";
-            this.tbxMatKhau.Size = new System.Drawing.Size(234, 22);
+            this.tbxMatKhau.Size = new System.Drawing.Size(263, 26);
             this.tbxMatKhau.TabIndex = 29;
             // 
             // tbxTaiKhoan
             // 
-            this.tbxTaiKhoan.Location = new System.Drawing.Point(161, 82);
+            this.tbxTaiKhoan.Location = new System.Drawing.Point(181, 102);
             this.tbxTaiKhoan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxTaiKhoan.Name = "tbxTaiKhoan";
-            this.tbxTaiKhoan.Size = new System.Drawing.Size(234, 22);
+            this.tbxTaiKhoan.Size = new System.Drawing.Size(263, 26);
             this.tbxTaiKhoan.TabIndex = 28;
             // 
             // lblTenKH
             // 
             this.lblTenKH.AutoSize = true;
-            this.lblTenKH.Location = new System.Drawing.Point(48, 119);
+            this.lblTenKH.Location = new System.Drawing.Point(54, 149);
             this.lblTenKH.Name = "lblTenKH";
-            this.lblTenKH.Size = new System.Drawing.Size(64, 16);
+            this.lblTenKH.Size = new System.Drawing.Size(79, 20);
             this.lblTenKH.TabIndex = 27;
             this.lblTenKH.Text = "Mật khẩu:";
             // 
             // lblMaPL
             // 
             this.lblMaPL.AutoSize = true;
-            this.lblMaPL.Location = new System.Drawing.Point(48, 82);
+            this.lblMaPL.Location = new System.Drawing.Point(54, 102);
             this.lblMaPL.Name = "lblMaPL";
-            this.lblMaPL.Size = new System.Drawing.Size(70, 16);
+            this.lblMaPL.Size = new System.Drawing.Size(82, 20);
             this.lblMaPL.TabIndex = 26;
             this.lblMaPL.Text = "Tài khoản:";
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 263);
+            this.ClientSize = new System.Drawing.Size(505, 329);
             this.Controls.Add(this.pnlLogin);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MinimumSize = new System.Drawing.Size(527, 385);
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLogin";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.pnlLogin.ResumeLayout(false);
             this.pnlLogin.PerformLayout();
             this.ResumeLayout(false);
@@ -118,5 +137,6 @@
         private System.Windows.Forms.TextBox tbxTaiKhoan;
         private System.Windows.Forms.Label lblTenKH;
         private System.Windows.Forms.Label lblMaPL;
+        private System.Windows.Forms.Button btnDangKy;
     }
 }

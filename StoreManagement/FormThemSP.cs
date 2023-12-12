@@ -14,7 +14,6 @@ namespace StoreManagement
             InitializeComponent();
         }
 
-        SanPhamDTO sanPham;
         private void FormThemSP_Load(object sender, EventArgs e)
         {
             //Do du lieu cua bang NhaCungCap vao combobox
@@ -25,7 +24,7 @@ namespace StoreManagement
         }
 
         //Lay gia tri tu user
-        public void GetValue()
+        private SanPhamDTO GetValue()
         {
             byte[] anh = ImageProcessing.Instance.ImageToArray(pbxAnhSp);
             if (pbxAnhSp.Image == null)
@@ -35,11 +34,15 @@ namespace StoreManagement
             }
             string maSanPham = tbxMaSP.Text;
             string tenSanPham = tbxTenSP.Text;
-            string maLoai = cbxPhanLoai.SelectedValue.ToString();
-            int soLuong = int.Parse(tbxSoLuong.Text);
-            float giaTien = float.Parse(tbxGiaTien.Text);
 
-            sanPham = new SanPhamDTO(anh, maSanPham, tenSanPham, maLoai, soLuong, giaTien);
+            string maLoai = cbxPhanLoai.SelectedValue.ToString();
+            int soLuongNhap = int.Parse(tbxSoLuong.Text);
+            int soLuong = soLuongNhap;
+            float giaNhap = float.Parse(tbxGiaNhap.Text);
+            float giaBan = float.Parse(tbxGiaBan.Text);
+            //float giamGia = float.Parse(cbxGiamGia.Text);
+
+            return new SanPhamDTO(anh, maSanPham, tenSanPham, maLoai, soLuong, giaBan, soLuongNhap, giaNhap, 0);
         }
 
         //Chon anh tu may tinh
@@ -53,8 +56,8 @@ namespace StoreManagement
         {
             try
             {
-                GetValue();
-                if(SanPhamBUS.Instance.ThemSanPham(sanPham) == true)
+                SanPhamDTO sanPham = GetValue();
+                if (SanPhamBUS.Instance.ThemSanPham(sanPham) == true)
                 {
                     MessageBox.Show("Thêm thành công");
                 }

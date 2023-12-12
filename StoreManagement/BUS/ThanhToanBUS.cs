@@ -14,6 +14,7 @@ namespace StoreManagement.BUS
     {
         private static ThanhToanBUS instance;
 
+
         public static ThanhToanBUS Instance
         {
             get

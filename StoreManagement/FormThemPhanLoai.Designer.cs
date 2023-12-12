@@ -37,29 +37,23 @@
             // 
             // tbxPL
             // 
-            this.tbxPL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxPL.Location = new System.Drawing.Point(140, 65);
+            this.tbxPL.Location = new System.Drawing.Point(140, 63);
             this.tbxPL.Name = "tbxPL";
-            this.tbxPL.Size = new System.Drawing.Size(648, 26);
+            this.tbxPL.Size = new System.Drawing.Size(485, 26);
             this.tbxPL.TabIndex = 24;
             // 
             // tbxMaPL
             // 
-            this.tbxMaPL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxMaPL.Location = new System.Drawing.Point(140, 19);
+            this.tbxMaPL.Location = new System.Drawing.Point(140, 17);
             this.tbxMaPL.Name = "tbxMaPL";
             this.tbxMaPL.ReadOnly = true;
-            this.tbxMaPL.Size = new System.Drawing.Size(648, 26);
+            this.tbxMaPL.Size = new System.Drawing.Size(485, 26);
             this.tbxMaPL.TabIndex = 23;
             // 
             // lblTenKH
             // 
-            this.lblTenKH.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTenKH.AutoSize = true;
-            this.lblTenKH.Location = new System.Drawing.Point(8, 71);
+            this.lblTenKH.Location = new System.Drawing.Point(8, 69);
             this.lblTenKH.Name = "lblTenKH";
             this.lblTenKH.Size = new System.Drawing.Size(78, 20);
             this.lblTenKH.TabIndex = 22;
@@ -67,10 +61,8 @@
             // 
             // lblMaPL
             // 
-            this.lblMaPL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMaPL.AutoSize = true;
-            this.lblMaPL.Location = new System.Drawing.Point(12, 19);
+            this.lblMaPL.Location = new System.Drawing.Point(12, 17);
             this.lblMaPL.Name = "lblMaPL";
             this.lblMaPL.Size = new System.Drawing.Size(103, 20);
             this.lblMaPL.TabIndex = 21;
@@ -78,9 +70,8 @@
             // 
             // btnThem
             // 
-            this.btnThem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThem.AutoSize = true;
-            this.btnThem.Location = new System.Drawing.Point(374, 175);
+            this.btnThem.Location = new System.Drawing.Point(288, 126);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 30);
             this.btnThem.TabIndex = 25;
@@ -92,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 241);
+            this.ClientSize = new System.Drawing.Size(637, 191);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.tbxPL);
             this.Controls.Add(this.tbxMaPL);

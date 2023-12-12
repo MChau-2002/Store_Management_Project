@@ -1,6 +1,7 @@
 ﻿using StoreManagement.BUS;
 using StoreManagement.DAO;
 using StoreManagement.DTO;
+using StoreManagement.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace StoreManagement
     public partial class FormDSKhachHang : Form
     {
         KhachHangDTO KH;
+        private DataTable dataTable;
         string maKH;
         public FormDSKhachHang()
         {
@@ -24,8 +26,11 @@ namespace StoreManagement
 
         private void FormDSKhachHang_Load(object sender, EventArgs e)
         {
-            dgvKH.DataSource = KhachHangDAO.Instance.DSKhachHang();
+            dataTable = KhachHangDAO.Instance.DSKhachHang();
+            dgvKH.DataSource = dataTable;
             dgvKH.Columns["Mã khách hàng"].ReadOnly = true;
+
+            PageProcessing.Instance.Load(dataTable, dgvKH, lblPageview);
 
             if (this.TopLevel == false)
             {
@@ -135,6 +140,28 @@ namespace StoreManagement
         private void btnRefresh_Click_1(object sender, EventArgs e)
         {
             FormDSKhachHang_Load(sender, e);
+        }
+
+        private void btnDauTrang_Click(object sender, EventArgs e)
+        {
+            PageProcessing.Instance.DauTrang(dataTable, dgvKH, lblPageview);
+        }
+
+        private void btnFwd_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang tiếp theo không
+            PageProcessing.Instance.TrangKeTiep(dataTable, dgvKH, lblPageview);
+        }
+
+        private void btnEPg_Click(object sender, EventArgs e)
+        {
+            PageProcessing.Instance.TrangCuoi(dataTable, dgvKH, lblPageview);
+        }
+
+        private void btnBck_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang trước đó không
+            PageProcessing.Instance.TrangKeTruoc(dataTable, dgvKH, lblPageview);
         }
     }
 }

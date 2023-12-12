@@ -49,5 +49,14 @@ namespace StoreManagement.Functions
             MemoryStream memory = new MemoryStream((byte[])data.SelectedRows[0].Cells[0].Value);
             picture.Image = Image.FromStream(memory);
         }
+
+        public void ByteToPbx(byte[] arr, PictureBox picture)
+        {
+            if (arr != null)
+            {
+                MemoryStream memory = new MemoryStream((byte[])arr);
+                picture.Image = Image.FromStream(memory);
+            }
+        }
     }
 }

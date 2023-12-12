@@ -1,19 +1,14 @@
 ﻿using StoreManagement.BUS;
 using StoreManagement.Functions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreManagement
 {
     public partial class FormHome : Form
     {
+        bool sidebarExpand = false;
         public FormHome()
         {
             InitializeComponent();
@@ -23,11 +18,26 @@ namespace StoreManagement
         {
             if (NhanVienBUS.currentNhanVien != null)
             {
-                lblTenNV.Text = NhanVienBUS.currentNhanVien.TenNhanVien.ToString();
+                btnTenNV.Text = "Chào, " + NhanVienBUS.currentNhanVien.TenNhanVien.ToString();
             }
             else
             {
-                lblTenNV.Text = "N/A";
+                btnTenNV.Text = "Chào, N/A";
+            }
+            if (NhanVienBUS.currentNhanVien?.VaiTro == "Nhân viên")
+            {
+                btnThongKe.Visible = false;
+                btnThongKe.Enabled = false;
+                btnSanPham.Visible = false;
+                btnSanPham.Enabled = false;
+                btnPhanloai.Visible = false;
+                btnPhanloai.Enabled = false;
+                btnNhanVien.Visible = false;
+                btnNhanVien.Enabled = false;
+                btnDSHoaDon.Visible = false;
+                btnDSHoaDon.Enabled = false;
+                btnKhachHang.Visible = false;
+                btnKhachHang.Enabled = false;
             }
         }
 
@@ -55,6 +65,12 @@ namespace StoreManagement
             lblTittle.Text = "Thanh Toán Hóa Đơn";
         }
 
+        private void btnNhanVien_Click(object sender, EventArgs e)
+        {
+            LoadingChildForm.Instance.OpenChildForm(new FormDSNhanVien(), pnlForm);
+            lblTittle.Text = "Danh Sách Nhân Viên";
+        }
+
         private void btnDSHoaDon_Click(object sender, EventArgs e)
         {
             LoadingChildForm.Instance.OpenChildForm(new FormDSHoaDon(), pnlForm);
@@ -63,14 +79,53 @@ namespace StoreManagement
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            LoadingChildForm.Instance.OpenChildForm(new FormThongKe(), pnlForm);
+            LoadingChildForm.Instance.OpenChildForm(new FormTK(), pnlForm);
             lblTittle.Text = "Thống Kê";
         }
 
-        private void lblTenNV_Click(object sender, EventArgs e)
+        private void timeSlide_Tick(object sender, EventArgs e)
         {
-
+            if (sidebarExpand)
+            {
+                pnlTaiKhoan.Height -= 10;
+                if (pnlTaiKhoan.Height == pnlTaiKhoan.MinimumSize.Height)
+                {
+                    sidebarExpand = false;
+                    timeSlide.Stop();
+                }
+            }
+            else
+            {
+                pnlTaiKhoan.Height += 10;
+                if (pnlTaiKhoan.Height == pnlTaiKhoan.MaximumSize.Height)
+                {
+                    sidebarExpand = true;
+                    timeSlide.Stop();
+                }
+            }
         }
 
+        private void btnTenNV_Click(object sender, EventArgs e)
+        {
+            timeSlide.Start();
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            FormThongTinNhanVien nhanVien = new FormThongTinNhanVien();
+            nhanVien.ShowDialog();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this,
+                        "Are you sure you want to logout?",
+                        "Closing Form",
+                        MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                this.Close();
+            }
+        }
     }
 }

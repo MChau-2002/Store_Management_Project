@@ -1,20 +1,16 @@
 ﻿using StoreManagement.BUS;
 using StoreManagement.DAO;
+using StoreManagement.Functions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreManagement
 {
     public partial class FormCTHD : Form
     {
+        DataTable dataTable;
         public FormCTHD()
         {
             InitializeComponent();
@@ -22,7 +18,10 @@ namespace StoreManagement
 
         private void FormCTHD_Load(object sender, EventArgs e)
         {
-            dgvCTHD.DataSource = ChiTietHoaDonDAO.Instance.ChiTietHoaDon();
+            dataTable = ChiTietHoaDonDAO.Instance.ChiTietHoaDon();
+            dgvCTHD.DataSource = dataTable;
+
+            PageProcessing.Instance.Load(dataTable,dgvCTHD,lblPageview);
         }
 
         private void BtnTimKiem_Click(object sender, EventArgs e)
@@ -46,15 +45,40 @@ namespace StoreManagement
         {
             FormCTHD_Load(sender, e);
         }
+        private void dgvCTHD_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void btnDauTrang_Click(object sender, EventArgs e)
+        {
+            PageProcessing.Instance.DauTrang(dataTable, dgvCTHD, lblPageview);
+        }
+
+        private void btnFwd_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang tiếp theo không
+            PageProcessing.Instance.TrangKeTiep(dataTable, dgvCTHD, lblPageview);
+        }
+
+        private void btnEPg_Click(object sender, EventArgs e)
+        {
+            PageProcessing.Instance.TrangCuoi(dataTable, dgvCTHD, lblPageview);
+        }
+
+        private void btnBck_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có trang trước đó không
+            PageProcessing.Instance.TrangKeTruoc(dataTable, dgvCTHD, lblPageview);
+        }
 
         private void PDHoaDon_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             string maCTHD = dgvCTHD.SelectedRows[0].Cells["Mã hóa đơn"].Value.ToString();
             DataTable data = ChiTietHoaDonDAO.Instance.XemBienLai(maCTHD);
             string ngayBan = "Ngày: " + data.Rows[0]["Ngày bán"].ToString();
-            string tongTien = "Tổng tiền: " + data.Rows[0]["Thành tiền"].ToString();
+            float tongTien = 0;
             string giamGia = "Giảm giá: " + data.Rows[0]["Giảm giá"].ToString();
-            string thanhTien = "Thành tiền: " + data.Rows[0]["Thành tiền"].ToString();
+            string phaiThanhToan = "Phải thanh toán: " + data.Rows[0]["Thành tiền"].ToString();
 
             //Header
             e.Graphics.DrawString("SIÊU THỊ MINI".ToUpper(), new Font("Microsoft Sans Serif",
@@ -66,7 +90,7 @@ namespace StoreManagement
                 12, FontStyle.Regular), Brushes.Black, new Point(330, 80));
             e.Graphics.DrawString("HÓA ĐƠN BÁN HÀNG".ToUpper(), new Font("Microsoft Sans Serif",
                 18, FontStyle.Bold), Brushes.Black, new Point(280, 140));
-            e.Graphics.DrawString(maCTHD.ToUpper(), new Font("Microsoft Sans Serif",
+            e.Graphics.DrawString("Mã hóa đơn: " + maCTHD.ToUpper(), new Font("Microsoft Sans Serif",
                 12, FontStyle.Bold), Brushes.Black, new Point(330, 170));
             e.Graphics.DrawString(ngayBan.ToUpper(), new Font("Microsoft Sans Serif",
                 12, FontStyle.Regular), Brushes.Black, new Point(330, 190));
@@ -86,12 +110,15 @@ namespace StoreManagement
             e.Graphics.DrawString("Mã sản phẩm", new Font("Microsoft Sans Serif",
             12, FontStyle.Bold), Brushes.Black, new Point(20, y));
             e.Graphics.DrawString("Tên sản phẩm", new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(180, y));
+            12, FontStyle.Bold), Brushes.Black, new Point(160, y));
             e.Graphics.DrawString("Số lượng", new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(500, y));
+            12, FontStyle.Bold), Brushes.Black, new Point(360, y));
             e.Graphics.DrawString("Giá", new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(600, y));
-
+            12, FontStyle.Bold), Brushes.Black, new Point(460, y));
+            e.Graphics.DrawString("Giảm giá", new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(560, y));
+            e.Graphics.DrawString("Thành tiền", new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(700, y));
             //DSSanPham
             for (int i = 0; i < data.Rows.Count; i++)
             {
@@ -101,17 +128,23 @@ namespace StoreManagement
                 string tenSanPham = data.Rows[i]["Tên sản phẩm"].ToString();
                 string soLuong = data.Rows[i]["Số lượng"].ToString();
                 string donGia = data.Rows[i]["Đơn giá"].ToString();
+                string giamGiaSp = data.Rows[i]["Giảm giá sản phẩm"].ToString();
+                string thanhTien = data.Rows[i]["Đơn giá"].ToString();
 
+                tongTien += float.Parse(thanhTien);
 
                 e.Graphics.DrawString(maSanPham, new Font("Microsoft Sans Serif",
                 12, FontStyle.Regular), Brushes.Black, new Point(20, y));
                 e.Graphics.DrawString(tenSanPham, new Font("Microsoft Sans Serif",
-                12, FontStyle.Regular), Brushes.Black, new Point(180, y));
+                12, FontStyle.Regular), Brushes.Black, new Point(160, y));
                 e.Graphics.DrawString(soLuong, new Font("Microsoft Sans Serif",
-                12, FontStyle.Regular), Brushes.Black, new Point(500, y));
+                12, FontStyle.Regular), Brushes.Black, new Point(360, y));
                 e.Graphics.DrawString(donGia, new Font("Microsoft Sans Serif",
-                12, FontStyle.Regular), Brushes.Black, new Point(600, y));
-
+                12, FontStyle.Regular), Brushes.Black, new Point(460, y));
+                e.Graphics.DrawString(giamGiaSp.ToString(), new Font("Microsoft Sans Serif",
+               12, FontStyle.Regular), Brushes.Black, new Point(560, y));
+                e.Graphics.DrawString(thanhTien.ToString(), new Font("Microsoft Sans Serif",
+                12, FontStyle.Regular), Brushes.Black, new Point(700, y));
             }
 
 
@@ -122,22 +155,22 @@ namespace StoreManagement
 
             //Footer
             y += 20;
-            e.Graphics.DrawString(tongTien, new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));
-
+            e.Graphics.DrawString("Tổng tiền: " + tongTien, new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(620 - 80, y));/*
+*/
             y += 20;
             e.Graphics.DrawString(giamGia, new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));
+            12, FontStyle.Bold), Brushes.Black, new Point(620 - 80, y));
 
             y += 20;
-            e.Graphics.DrawString(thanhTien, new Font("Microsoft Sans Serif",
-            12, FontStyle.Bold), Brushes.Black, new Point(Right - 80, y));
+            e.Graphics.DrawString(phaiThanhToan, new Font("Microsoft Sans Serif",
+            12, FontStyle.Bold), Brushes.Black, new Point(620 - 80, y));
 
             y += 50;
             e.Graphics.DrawString("Xin cảm ơn quý khách!", new Font("Microsoft Sans Serif",
             14, FontStyle.Bold), Brushes.Black, new Point(300, y));
 
-            
         }
+
     }
 }

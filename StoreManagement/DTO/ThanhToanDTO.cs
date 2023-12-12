@@ -1,4 +1,6 @@
-﻿namespace StoreManagement.DTO
+﻿using System.Runtime.InteropServices;
+
+namespace StoreManagement.DTO
 {
     class ThanhToanDTO
     {
@@ -43,8 +45,15 @@
             get { return thanhTien; }
             set { thanhTien = value; }
         }
+        private float giamGiaSP;
 
-        public ThanhToanDTO(string maHoaDon, string maSanPham, int soLuong, float donGia, int giamGia, float thanhTien)
+        public float GiamGiaSP
+        {
+            get { return giamGiaSP; }
+            set { giamGiaSP = value; }
+        }
+
+        public ThanhToanDTO(string maHoaDon, string maSanPham, int soLuong, float donGia, int giamGia, float thanhTien, float giamGiaSP)
         {
             this.maHoaDon = maHoaDon;
             this.maSanPham = maSanPham;
@@ -52,6 +61,7 @@
             this.donGia = donGia;
             this.giamGia = giamGia;
             this.thanhTien = thanhTien;
+            this.giamGiaSP = giamGiaSP;
         }
     }
 }
