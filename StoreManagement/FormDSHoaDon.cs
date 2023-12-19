@@ -2,13 +2,7 @@
 using StoreManagement.DAO;
 using StoreManagement.Functions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreManagement
@@ -47,6 +41,7 @@ namespace StoreManagement
             dgvHD.DataSource = HoaDonDAO.Instance.DSHoaDon();
         }
 
+        #region PageProcessing
         private void btnDauTrang_Click(object sender, EventArgs e)
         {
             PageProcessing.Instance.DauTrang(dataTable, dgvHD, lblPageview);
@@ -68,5 +63,7 @@ namespace StoreManagement
             // Kiểm tra xem có trang trước đó không
             PageProcessing.Instance.TrangKeTruoc(dataTable, dgvHD, lblPageview);
         }
+
+        #endregion
     }
 }

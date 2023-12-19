@@ -1,10 +1,5 @@
 ﻿using StoreManagement.DAO;
 using StoreManagement.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StoreManagement.BUS
 {
@@ -63,6 +58,11 @@ namespace StoreManagement.BUS
         public bool CheckAccExist() 
         {
             return TaiKhoanDAO.Instance.CheckAccExist();
+        }
+
+        public bool CheckAccDuplicated(string taiKhoan)
+        {
+            return TaiKhoanDAO.Instance.CheckAccDuplicated(taiKhoan);
         }
     }
 }

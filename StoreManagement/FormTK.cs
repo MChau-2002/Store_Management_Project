@@ -30,6 +30,7 @@ namespace StoreManagement
             lblHoaDon.Text = "Tổng số hóa đơn đã tạo trong tháng " + DateTime.Now.Month.ToString() + ":";
             tbxHoaDon.Text = ThongKeBUS.Instance.SLHoaDon().ToString();
             pnlPrint.Visible = false;
+            btnXemChiTiet.Visible = false;
         }
 
         private void FillChart()
@@ -37,6 +38,9 @@ namespace StoreManagement
             DataTable table = ThongKeBUS.Instance.BieuDoDoanhThu();
 
             chrtDoanhThu.Series.Clear();
+            //chrtDoanhThu.ChartAreas[0].AxisX.Interval = 1;
+            //chrtDoanhThu.ChartAreas[0].AxisX.Minimum = 1;
+            chrtDoanhThu.ChartAreas[0].AxisX.Maximum = 12;
             chrtDoanhThu.ChartAreas[0].AxisX.Title = " Tháng";
             chrtDoanhThu.ChartAreas[0].AxisY.Title = " Doanh Thu";
 
@@ -66,6 +70,7 @@ namespace StoreManagement
                     dataTable = ThongKeDAO.Instance.SanPhamDaBan(startDate, endDate);
                     dgvBaoCao.DataSource = dataTable;
                     PageProcessing.Instance.Load(dataTable, dgvBaoCao, lblPageview);
+                    btnXemChiTiet.Visible = true;
                 }
                 else if (selected == "Chi tiết doanh thu")
                 {
@@ -73,11 +78,12 @@ namespace StoreManagement
                     dataTable = ThongKeDAO.Instance.DoanhThu(startDate, endDate);
                     dgvBaoCao.DataSource = dataTable;
                     PageProcessing.Instance.Load(dataTable, dgvBaoCao, lblPageview);
+                    btnXemChiTiet.Visible = true;
                 }
             }
             else
             {
-                MessageBox.Show("Chọn giá trị", "Thông báo",
+                MessageBox.Show("Chọn loại báo cáo", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -101,16 +107,18 @@ namespace StoreManagement
                     
                     PPDBaoCao.Document = pDDaBan;
                     PPDBaoCao.ShowDialog();
+                    FormThongKe_Load(sender, e);
                 }
                 else if (selected == "Chi tiết doanh thu")
                 {
                     PPDBaoCao.Document = pDDoanhThu;
                     PPDBaoCao.ShowDialog();
+                    FormThongKe_Load(sender, e);
                 }
             }
             else
             {
-                MessageBox.Show("Chọn giá trị", "Thông báo",
+                MessageBox.Show("Chọn loại báo cáo", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -119,8 +127,6 @@ namespace StoreManagement
         {
             string startDate = "Từ: " + dtpkStartDate.Value.ToString();
             string endDate = "Đến: " + dtpkEndDate.Value.ToString();
-
-
 
             //Header
             e.Graphics.DrawString("SIÊU THỊ MINI".ToUpper(), new Font("Microsoft Sans Serif",
@@ -214,12 +220,11 @@ namespace StoreManagement
             e.Graphics.DrawString("TỒNG LỢI NHUẬN: " + tongLai.ToString(), new Font("Microsoft Sans Serif",
             12, FontStyle.Bold), Brushes.Black, new Point(620 - 80, y));
         }
+
         private void pDDaBan_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             string startDate = "Từ: " + dtpkStartDate.Value.ToString();
             string endDate = "Đến: " + dtpkEndDate.Value.ToString();
-
-
 
             //Header
             e.Graphics.DrawString("SIÊU THỊ MINI".ToUpper(), new Font("Microsoft Sans Serif",
@@ -284,7 +289,8 @@ namespace StoreManagement
             Point p4 = new Point(840, y);
             e.Graphics.DrawLine(blackPen, p3, p4);
         }
-
+        
+        #region pageProcessing
         private void btnDauTrang_Click(object sender, EventArgs e)
         {
             PageProcessing.Instance.DauTrang(dataTable, dgvBaoCao, lblPageview);
@@ -306,5 +312,7 @@ namespace StoreManagement
             // Kiểm tra xem có trang trước đó không
             PageProcessing.Instance.TrangKeTruoc(dataTable, dgvBaoCao, lblPageview);
         }
+        
+        #endregion
     }
 }

@@ -42,12 +42,14 @@ namespace StoreManagement.Functions
             // Hiển thị dữ liệu trên DataGridView
             dgvketQua.DataSource = currentPageData;
         }
+
         public void Load(DataTable data, DataGridView dgvketQua, System.Windows.Forms.Label label)
         {
             currentPage = 1;
             HienThiDuLieuTrangHienTai(data, dgvketQua);
             CapNhatSoTrang(label);
         }
+
         public void CapNhatSoTrang(System.Windows.Forms.Label label)
         {
             // Hiển thị thông tin về trang

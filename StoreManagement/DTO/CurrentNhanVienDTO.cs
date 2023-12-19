@@ -2,13 +2,6 @@
 {
     class CurrentNhanVienDTO
     {
-        /*private byte[] anhNhanVien;
-        public byte[] AnhNhanVien
-        {
-            get { return anhNhanVien; }
-            set { anhNhanVien = value; }
-        }*/
-
         private string maNhanVien;
         public string MaNhanVien
         {
@@ -32,7 +25,6 @@
 
         public CurrentNhanVienDTO( string maNhanVien, string tenNhanVien, string vaiTro)
         {
-            //this.anhNhanVien = anhNhanVien;
             this.maNhanVien = maNhanVien;
             this.tenNhanVien = tenNhanVien;
             this.vaiTro = vaiTro;

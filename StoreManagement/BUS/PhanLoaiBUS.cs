@@ -1,10 +1,5 @@
 ﻿using StoreManagement.DAO;
 using StoreManagement.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreManagement.BUS
@@ -44,10 +39,12 @@ namespace StoreManagement.BUS
         {
             return PhanLoaiDAO.Instance.SuaLoai(phanLoai);
         }
+
         public bool XoaLoai(string id)
         {
             return PhanLoaiDAO.Instance.XoaLoai(id);
         }
+
         public bool CheckExistence(string id)
         {
             return PhanLoaiDAO.Instance.CheckExistence(id);

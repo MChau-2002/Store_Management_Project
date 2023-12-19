@@ -194,7 +194,7 @@
             this.ClientSize = new System.Drawing.Size(1093, 594);
             this.Controls.Add(this.pnlHoaDon);
             this.Name = "FormDSHoaDon";
-            this.Text = "FormDSHoaDon";
+            this.Text = "7";
             this.Load += new System.EventHandler(this.FormDSHoaDon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHD)).EndInit();
             this.pnlHoaDon.ResumeLayout(false);

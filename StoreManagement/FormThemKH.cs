@@ -1,13 +1,6 @@
 ﻿using StoreManagement.BUS;
 using StoreManagement.DTO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreManagement
@@ -24,7 +17,7 @@ namespace StoreManagement
         {
             tbxMaKH.Text = KhachHangBUS.Instance.idGenerate("KH");
         }
-
+        //Lay du lieu tu user
         private void GetValue()
         {
             string maKhachHang = tbxMaKH.Text;
@@ -40,6 +33,12 @@ namespace StoreManagement
             try
             {
                 GetValue();
+                if (tbxTenKH.Text.Trim() == "" || tbxSdt.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mời nhập đủ thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                //them
                 if (KhachHangBUS.Instance.ThemKH(KH) == true)
                 {
                     MessageBox.Show("Thêm thành công");

@@ -44,6 +44,7 @@ namespace StoreManagement.DAO
             int total = DataProvider.Instance.ExecuteQuery(query).Rows.Count;
             return total;
         }
+
         public int SLHoaDon(string month)
         {
             string query = "select * from HoaDon where month(NgayBan) = @month";
@@ -83,7 +84,6 @@ namespace StoreManagement.DAO
 
             return DataProvider.Instance.ExecuteQuery(query, parameters);
         }
-
 
         public DataTable DoanhThu(DateTime startTime, DateTime endTime)
         {

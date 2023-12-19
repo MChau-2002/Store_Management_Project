@@ -9,6 +9,7 @@ namespace StoreManagement
 {
     public partial class FormThemSP : Form
     {
+        SanPhamDTO sanPham;
         public FormThemSP()
         {
             InitializeComponent();
@@ -24,8 +25,9 @@ namespace StoreManagement
         }
 
         //Lay gia tri tu user
-        private SanPhamDTO GetValue()
+        private void GetValue()
         {
+            
             byte[] anh = ImageProcessing.Instance.ImageToArray(pbxAnhSp);
             if (pbxAnhSp.Image == null)
             {
@@ -34,15 +36,17 @@ namespace StoreManagement
             }
             string maSanPham = tbxMaSP.Text;
             string tenSanPham = tbxTenSP.Text;
-
             string maLoai = cbxPhanLoai.SelectedValue.ToString();
-            int soLuongNhap = int.Parse(tbxSoLuong.Text);
+            int soLuongNhap;
+            if (tbxSoLuong.Text.Trim() == "") { soLuongNhap = 0; } else { soLuongNhap = int.Parse(tbxSoLuong.Text); }
             int soLuong = soLuongNhap;
-            float giaNhap = float.Parse(tbxGiaNhap.Text);
-            float giaBan = float.Parse(tbxGiaBan.Text);
+            float giaNhap;
+            if (tbxGiaNhap.Text.Trim() == "") { giaNhap = 0; } else { giaNhap = int.Parse(tbxGiaNhap.Text); }
+            float giaBan;
+            if (tbxGiaBan.Text.Trim() == "") { giaBan = 0; } else { giaBan = int.Parse(tbxGiaBan.Text); }
             //float giamGia = float.Parse(cbxGiamGia.Text);
 
-            return new SanPhamDTO(anh, maSanPham, tenSanPham, maLoai, soLuong, giaBan, soLuongNhap, giaNhap, 0);
+            sanPham = new SanPhamDTO(anh, maSanPham, tenSanPham, maLoai, soLuong, giaBan, soLuongNhap, giaNhap, 0);
         }
 
         //Chon anh tu may tinh
@@ -56,7 +60,13 @@ namespace StoreManagement
         {
             try
             {
-                SanPhamDTO sanPham = GetValue();
+                GetValue();
+                if (tbxTenSP.Text.Trim() == "" || tbxSoLuong.Text.Trim() == "" || tbxGiaNhap.Text.Trim() == "" || tbxGiaBan.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mời nhập đủ thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                //them
                 if (SanPhamBUS.Instance.ThemSanPham(sanPham) == true)
                 {
                     MessageBox.Show("Thêm thành công");

@@ -23,10 +23,12 @@ namespace StoreManagement.BUS
             DataTable data = ThongKeDAO.Instance.BieuDoDoanhThu();
             return data;
         }
+
         public int SLSanPham()
         {
             return ThongKeDAO.Instance.SLSanPham();
         }
+
         public int SLPhanLoai()
         {
             return ThongKeDAO.Instance.SLPhanLoai();
@@ -46,11 +48,13 @@ namespace StoreManagement.BUS
             DataTable data = ThongKeDAO.Instance.SanPhamTonKho(start, end);
             return data;
         }
+
         public DataTable SanPhamDaBan(DateTime start, DateTime end)
         {
             DataTable data = ThongKeDAO.Instance.SanPhamDaBan(start, end);
             return data;
         }
+
         public DataTable DoanhThu(DateTime start, DateTime end)
         {
             DataTable data = ThongKeDAO.Instance.DoanhThu(start, end);

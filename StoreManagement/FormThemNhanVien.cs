@@ -3,14 +3,7 @@ using StoreManagement.DTO;
 using StoreManagement.Functions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace StoreManagement
 {
@@ -28,6 +21,7 @@ namespace StoreManagement
             cbxVaiTro.DataSource = vaiTro.ToArray();
             tbxMaNV.Text = NhanVienBUS.Instance.idGenerate("NV");
         }
+
         public void GetValue()
         {
             byte[] anhNV = ImageProcessing.Instance.ImageToArray(pbxAnhNV);
@@ -57,20 +51,34 @@ namespace StoreManagement
             try
             {
                 GetValue();
-                if (NhanVienBUS.Instance.ThemNhanVien(nhanVien) == true)
+                if(tbxTenNV.Text.Trim() == "" || tbxMatKhau.Text.Trim() == "" || tbxTaiKhoan.Text.Trim() == "" || tbxSdt.Text.Trim() == "")
                 {
-                    if(TaiKhoanBUS.Instance.ThemTaiKhoan(taiKhoanmoi) == true)
+                    MessageBox.Show("Mời nhập đủ thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                
+                if (!TaiKhoanBUS.Instance.CheckAccDuplicated(taiKhoanmoi.TaiKhoan))
+                {
+                    if (NhanVienBUS.Instance.ThemNhanVien(nhanVien) == true)
                     {
-                        MessageBox.Show("Thêm thành công");
-                    } 
+                        if (TaiKhoanBUS.Instance.ThemTaiKhoan(taiKhoanmoi) == true)
+                        {
+                            MessageBox.Show("Thêm thành công");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thêm không thành công");
+                        }
+                    }
                     else
                     {
                         MessageBox.Show("Thêm không thành công");
-                    }    
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Thêm không thành công");
+                    MessageBox.Show("Tài khoản bị trùng! Mời nhập tài khoản khác");
+                    return;
                 }
                 this.Close();
             }

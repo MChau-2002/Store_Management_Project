@@ -39,6 +39,7 @@ namespace StoreManagement.BUS
         {
             return SanPhamDAO.Instance.XoaSanPham(MaSanPham);
         }
+
         public bool NhapHang(int TonKho, int SoLuongNhap, string MaSP)
         {
             return SanPhamDAO.Instance.NhapHang(TonKho, SoLuongNhap, MaSP);

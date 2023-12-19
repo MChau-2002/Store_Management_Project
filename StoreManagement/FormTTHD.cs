@@ -66,6 +66,8 @@ namespace StoreManagement
             return gioHang;
         }
 
+        #region Page Processing
+
         private void btnDauTrang_Click(object sender, EventArgs e)
         {
             PageProcessing.Instance.DauTrang(dataTable, dgvSanPham, lblPageview);
@@ -87,6 +89,8 @@ namespace StoreManagement
             // Kiểm tra xem có trang trước đó không
             PageProcessing.Instance.TrangKeTruoc(dataTable, dgvSanPham, lblPageview);
         }
+
+        #endregion
 
         private void btnTaoHoaDon_Click(object sender, EventArgs e)
         {
@@ -219,6 +223,11 @@ namespace StoreManagement
                         LuuCTHD();
                         pPDHoaDon.Document = pDHoaDon;
                         pPDHoaDon.ShowDialog();
+                        DialogResult result = MessageBox.Show("Bạn có muốn in hóa đơn?", "Print", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            pDHoaDon.Print();
+                        }
                         btnTaoHoaDon.Enabled = true;
                         ResetValue();
                         FormTTHD_Load(sender, e);
@@ -304,6 +313,7 @@ namespace StoreManagement
                 btnXoa_Click(sender, e);
             }
         }
+
         private void GetValueHoaDon()
         {
             if(dgvGioHang.RowCount > 1)
@@ -457,8 +467,6 @@ namespace StoreManagement
             e.Graphics.DrawString("Xin cảm ơn quý khách!", new Font("Microsoft Sans Serif",
             14, FontStyle.Bold), Brushes.Black, new Point(300, y));
         }
-
-        
 
     }
 }

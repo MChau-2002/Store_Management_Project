@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTK));
             this.gbxThongKe = new System.Windows.Forms.GroupBox();
             this.lblHoaDon = new System.Windows.Forms.Label();
@@ -44,15 +44,16 @@
             this.lblSLSP = new System.Windows.Forms.Label();
             this.tbxSLSP = new System.Windows.Forms.TextBox();
             this.gbxBaoCao = new System.Windows.Forms.GroupBox();
+            this.pnlPrint = new System.Windows.Forms.Panel();
             this.pnlPage = new System.Windows.Forms.Panel();
             this.lblPageview = new System.Windows.Forms.Label();
             this.btnEPg = new System.Windows.Forms.Button();
             this.btnFwd = new System.Windows.Forms.Button();
             this.btnBck = new System.Windows.Forms.Button();
             this.btnDauTrang = new System.Windows.Forms.Button();
+            this.dgvBaoCao = new System.Windows.Forms.DataGridView();
             this.btnXemChiTiet = new System.Windows.Forms.Button();
             this.btnBaoCao = new System.Windows.Forms.Button();
-            this.dgvBaoCao = new System.Windows.Forms.DataGridView();
             this.cbxLoai = new System.Windows.Forms.ComboBox();
             this.dtpkEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtpkStartDate = new System.Windows.Forms.DateTimePicker();
@@ -62,13 +63,12 @@
             this.PPDBaoCao = new System.Windows.Forms.PrintPreviewDialog();
             this.pDDaBan = new System.Drawing.Printing.PrintDocument();
             this.pDDoanhThu = new System.Drawing.Printing.PrintDocument();
-            this.pnlPrint = new System.Windows.Forms.Panel();
             this.gbxThongKe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDoanhThu)).BeginInit();
             this.gbxBaoCao.SuspendLayout();
+            this.pnlPrint.SuspendLayout();
             this.pnlPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaoCao)).BeginInit();
-            this.pnlPrint.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbxThongKe
@@ -102,23 +102,23 @@
             // 
             // chrtDoanhThu
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chrtDoanhThu.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chrtDoanhThu.Legends.Add(legend4);
-            this.chrtDoanhThu.Location = new System.Drawing.Point(503, 12);
+            chartArea1.Name = "ChartArea1";
+            this.chrtDoanhThu.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrtDoanhThu.Legends.Add(legend1);
+            this.chrtDoanhThu.Location = new System.Drawing.Point(460, 12);
             this.chrtDoanhThu.Name = "chrtDoanhThu";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Doanh Thu";
-            this.chrtDoanhThu.Series.Add(series4);
-            this.chrtDoanhThu.Size = new System.Drawing.Size(567, 306);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Doanh Thu";
+            this.chrtDoanhThu.Series.Add(series1);
+            this.chrtDoanhThu.Size = new System.Drawing.Size(622, 306);
             this.chrtDoanhThu.TabIndex = 0;
             this.chrtDoanhThu.Text = "Biểu đồ doanh thu";
-            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title4.Name = "Title1";
-            title4.Text = "BIỂU ĐỒ DOANH THU";
-            this.chrtDoanhThu.Titles.Add(title4);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Text = "BIỂU ĐỒ DOANH THU";
+            this.chrtDoanhThu.Titles.Add(title1);
             // 
             // tbxHoaDon
             // 
@@ -207,6 +207,18 @@
             this.gbxBaoCao.TabStop = false;
             this.gbxBaoCao.Text = "Lập báo cáo";
             // 
+            // pnlPrint
+            // 
+            this.pnlPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlPrint.Controls.Add(this.pnlPage);
+            this.pnlPrint.Controls.Add(this.dgvBaoCao);
+            this.pnlPrint.Location = new System.Drawing.Point(460, 14);
+            this.pnlPrint.Name = "pnlPrint";
+            this.pnlPrint.Size = new System.Drawing.Size(622, 305);
+            this.pnlPrint.TabIndex = 86;
+            // 
             // pnlPage
             // 
             this.pnlPage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -281,6 +293,20 @@
             this.btnDauTrang.UseVisualStyleBackColor = true;
             this.btnDauTrang.Click += new System.EventHandler(this.btnDauTrang_Click);
             // 
+            // dgvBaoCao
+            // 
+            this.dgvBaoCao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvBaoCao.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBaoCao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBaoCao.Location = new System.Drawing.Point(66, 11);
+            this.dgvBaoCao.Name = "dgvBaoCao";
+            this.dgvBaoCao.RowHeadersWidth = 62;
+            this.dgvBaoCao.RowTemplate.Height = 28;
+            this.dgvBaoCao.Size = new System.Drawing.Size(532, 217);
+            this.dgvBaoCao.TabIndex = 45;
+            // 
             // btnXemChiTiet
             // 
             this.btnXemChiTiet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -306,20 +332,6 @@
             this.btnBaoCao.Text = "Lập báo cáo";
             this.btnBaoCao.UseVisualStyleBackColor = true;
             this.btnBaoCao.Click += new System.EventHandler(this.btnBaoCao_Click);
-            // 
-            // dgvBaoCao
-            // 
-            this.dgvBaoCao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvBaoCao.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBaoCao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBaoCao.Location = new System.Drawing.Point(66, 11);
-            this.dgvBaoCao.Name = "dgvBaoCao";
-            this.dgvBaoCao.RowHeadersWidth = 62;
-            this.dgvBaoCao.RowTemplate.Height = 28;
-            this.dgvBaoCao.Size = new System.Drawing.Size(532, 217);
-            this.dgvBaoCao.TabIndex = 45;
             // 
             // cbxLoai
             // 
@@ -391,18 +403,6 @@
             // 
             this.pDDoanhThu.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pDDoanhThu_PrintPage);
             // 
-            // pnlPrint
-            // 
-            this.pnlPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlPrint.Controls.Add(this.pnlPage);
-            this.pnlPrint.Controls.Add(this.dgvBaoCao);
-            this.pnlPrint.Location = new System.Drawing.Point(460, 14);
-            this.pnlPrint.Name = "pnlPrint";
-            this.pnlPrint.Size = new System.Drawing.Size(622, 305);
-            this.pnlPrint.TabIndex = 86;
-            // 
             // FormTK
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -418,9 +418,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.chrtDoanhThu)).EndInit();
             this.gbxBaoCao.ResumeLayout(false);
             this.gbxBaoCao.PerformLayout();
+            this.pnlPrint.ResumeLayout(false);
             this.pnlPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaoCao)).EndInit();
-            this.pnlPrint.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -40,7 +40,6 @@ namespace StoreManagement.DAO
             return DataProvider.Instance.ExecuteNonQuery(query, parameter);
         }
 
-
         public DataTable DSNhanVien()
         {
             string query = "select AnhNV as 'Ảnh' , " +
@@ -49,6 +48,18 @@ namespace StoreManagement.DAO
                 "MatKhau as 'Mật khẩu', VaiTro as 'Vai trò' from NhanVien " +
                 "inner join TaiKhoan on NhanVien.MaNhanVien = TaiKhoan.MaNhanVien ";
             return DataProvider.Instance.ExecuteQuery(query);
+        }
+
+        public DataTable TimNhanVienTheoTen(string tenNV)
+        {
+            string query = "select AnhNV as 'Ảnh' , " +
+                "NhanVien.MaNhanVien as 'Mã nhân viên' , TenNV as 'Tên nhân viên' , " +
+                "Sdt as 'Số điện thoại',TaiKhoan as 'Tài khoản' , " +
+                "MatKhau as 'Mật khẩu', VaiTro as 'Vai trò' from NhanVien " +
+                "inner join TaiKhoan on NhanVien.MaNhanVien = TaiKhoan.MaNhanVien " +
+                "where TenNV like @TenNV or NhanVien.MaNhanVien like @TenNV";
+            object[] parameter = { "%" + tenNV + "%" };
+            return DataProvider.Instance.ExecuteQuery(query, parameter);
         }
 
 
@@ -63,6 +74,7 @@ namespace StoreManagement.DAO
             }
             return result;
         }
+
         public bool XoaNhanVien(string id)
         {
             string query = "Delete NhanVien where MaNhanVien = @MaNhanVien";

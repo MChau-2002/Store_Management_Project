@@ -33,7 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblMaSP = new System.Windows.Forms.Label();
             this.gbxInfo = new System.Windows.Forms.GroupBox();
+            this.btnNhapHang = new System.Windows.Forms.Button();
+            this.cbxGiamGia = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbxGiaNhap = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cbxPhanLoai = new System.Windows.Forms.ComboBox();
+            this.pbxAnhSp = new System.Windows.Forms.PictureBox();
             this.tbxGiaTien = new System.Windows.Forms.TextBox();
             this.btnSua = new System.Windows.Forms.Button();
             this.tbxSoLuong = new System.Windows.Forms.TextBox();
@@ -55,16 +61,10 @@
             this.btnFwd = new System.Windows.Forms.Button();
             this.btnBck = new System.Windows.Forms.Button();
             this.btnDauTrang = new System.Windows.Forms.Button();
-            this.tbxGiaNhap = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbxGiamGia = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnNhapHang = new System.Windows.Forms.Button();
-            this.pbxAnhSp = new System.Windows.Forms.PictureBox();
             this.gbxInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAnhSp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSanPham)).BeginInit();
             this.pnlPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxAnhSp)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMaSP
@@ -109,6 +109,67 @@
             this.gbxInfo.TabStop = false;
             this.gbxInfo.Text = "Thông tin sản phẩm";
             // 
+            // btnNhapHang
+            // 
+            this.btnNhapHang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNhapHang.AutoSize = true;
+            this.btnNhapHang.Location = new System.Drawing.Point(154, 626);
+            this.btnNhapHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNhapHang.Name = "btnNhapHang";
+            this.btnNhapHang.Size = new System.Drawing.Size(97, 38);
+            this.btnNhapHang.TabIndex = 18;
+            this.btnNhapHang.Text = "Nhập hàng";
+            this.btnNhapHang.UseVisualStyleBackColor = true;
+            this.btnNhapHang.Click += new System.EventHandler(this.btnNhapHang_Click);
+            // 
+            // cbxGiamGia
+            // 
+            this.cbxGiamGia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxGiamGia.FormattingEnabled = true;
+            this.cbxGiamGia.Items.AddRange(new object[] {
+            "0",
+            "10",
+            "20",
+            "50"});
+            this.cbxGiamGia.Location = new System.Drawing.Point(134, 572);
+            this.cbxGiamGia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxGiamGia.Name = "cbxGiamGia";
+            this.cbxGiamGia.Size = new System.Drawing.Size(255, 28);
+            this.cbxGiamGia.TabIndex = 17;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 580);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 20);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Giảm giá";
+            // 
+            // tbxGiaNhap
+            // 
+            this.tbxGiaNhap.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxGiaNhap.Location = new System.Drawing.Point(134, 525);
+            this.tbxGiaNhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxGiaNhap.Name = "tbxGiaNhap";
+            this.tbxGiaNhap.Size = new System.Drawing.Size(255, 26);
+            this.tbxGiaNhap.TabIndex = 15;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 531);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 20);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Giá nhập:";
+            // 
             // cbxPhanLoai
             // 
             this.cbxPhanLoai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -119,6 +180,20 @@
             this.cbxPhanLoai.Name = "cbxPhanLoai";
             this.cbxPhanLoai.Size = new System.Drawing.Size(255, 28);
             this.cbxPhanLoai.TabIndex = 13;
+            // 
+            // pbxAnhSp
+            // 
+            this.pbxAnhSp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbxAnhSp.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.pbxAnhSp.Location = new System.Drawing.Point(94, 38);
+            this.pbxAnhSp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbxAnhSp.Name = "pbxAnhSp";
+            this.pbxAnhSp.Size = new System.Drawing.Size(213, 225);
+            this.pbxAnhSp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxAnhSp.TabIndex = 12;
+            this.pbxAnhSp.TabStop = false;
+            this.pbxAnhSp.Click += new System.EventHandler(this.PbxAnhSp_Click);
             // 
             // tbxGiaTien
             // 
@@ -150,6 +225,7 @@
             this.tbxSoLuong.Location = new System.Drawing.Point(134, 429);
             this.tbxSoLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxSoLuong.Name = "tbxSoLuong";
+            this.tbxSoLuong.ReadOnly = true;
             this.tbxSoLuong.Size = new System.Drawing.Size(255, 26);
             this.tbxSoLuong.TabIndex = 9;
             // 
@@ -251,6 +327,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSanPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSanPham.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -394,81 +471,6 @@
             this.btnDauTrang.UseVisualStyleBackColor = true;
             this.btnDauTrang.Click += new System.EventHandler(this.btnDauTrang_Click);
             // 
-            // tbxGiaNhap
-            // 
-            this.tbxGiaNhap.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxGiaNhap.Location = new System.Drawing.Point(134, 525);
-            this.tbxGiaNhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbxGiaNhap.Name = "tbxGiaNhap";
-            this.tbxGiaNhap.Size = new System.Drawing.Size(255, 26);
-            this.tbxGiaNhap.TabIndex = 15;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 531);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 20);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Giá nhập:";
-            // 
-            // cbxGiamGia
-            // 
-            this.cbxGiamGia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxGiamGia.FormattingEnabled = true;
-            this.cbxGiamGia.Items.AddRange(new object[] {
-            "0",
-            "10",
-            "20",
-            "50"});
-            this.cbxGiamGia.Location = new System.Drawing.Point(134, 572);
-            this.cbxGiamGia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbxGiamGia.Name = "cbxGiamGia";
-            this.cbxGiamGia.Size = new System.Drawing.Size(255, 28);
-            this.cbxGiamGia.TabIndex = 17;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 580);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 20);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Giảm giá";
-            // 
-            // btnNhapHang
-            // 
-            this.btnNhapHang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNhapHang.AutoSize = true;
-            this.btnNhapHang.Location = new System.Drawing.Point(154, 626);
-            this.btnNhapHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnNhapHang.Name = "btnNhapHang";
-            this.btnNhapHang.Size = new System.Drawing.Size(97, 38);
-            this.btnNhapHang.TabIndex = 18;
-            this.btnNhapHang.Text = "Nhập hàng";
-            this.btnNhapHang.UseVisualStyleBackColor = true;
-            this.btnNhapHang.Click += new System.EventHandler(this.btnNhapHang_Click);
-            // 
-            // pbxAnhSp
-            // 
-            this.pbxAnhSp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbxAnhSp.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.pbxAnhSp.Location = new System.Drawing.Point(94, 38);
-            this.pbxAnhSp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pbxAnhSp.Name = "pbxAnhSp";
-            this.pbxAnhSp.Size = new System.Drawing.Size(213, 225);
-            this.pbxAnhSp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxAnhSp.TabIndex = 12;
-            this.pbxAnhSp.TabStop = false;
-            this.pbxAnhSp.Click += new System.EventHandler(this.PbxAnhSp_Click);
-            // 
             // FormDSSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -489,9 +491,9 @@
             this.Load += new System.EventHandler(this.FormDSSanPham_Load);
             this.gbxInfo.ResumeLayout(false);
             this.gbxInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAnhSp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSanPham)).EndInit();
             this.pnlPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbxAnhSp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

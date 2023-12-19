@@ -56,6 +56,7 @@ namespace StoreManagement
         private void btnLuu_Click(object sender, EventArgs e)
         {
             NhanVienBUS.Instance.SuaCurrentNhanVien(ImageProcessing.Instance.ImageToArray(pbxAnhNV), tbxMaNV.Text, tbxTenNV.Text, tbxSdt.Text);
+            NhanVienBUS.Instance.SetCurrentNhanVien(tbxTaiKhoan.Text);
             btnSua.Visible = true;
             btnHuy_Click(sender, e);
         }

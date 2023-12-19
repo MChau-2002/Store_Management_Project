@@ -2,6 +2,7 @@
 using StoreManagement.Functions;
 using System;
 using System.Data;
+using System.Windows.Forms;
 
 namespace StoreManagement.DAO
 {
@@ -102,6 +103,11 @@ namespace StoreManagement.DAO
             string query = "select count(*) from TaiKhoan";
             return DataProvider.Instance.ExecuteScalar(query);
         }
-
+        public bool CheckAccDuplicated(string taiKhoan)
+        {
+            string query = "select count(*) from TaiKhoan where TaiKhoan = @TaiKhoan";
+            object[] parameter = { taiKhoan};
+            return DataProvider.Instance.ExecuteScalar(query, parameter);
+        }
     }
 }

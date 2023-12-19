@@ -1,15 +1,8 @@
 ﻿using StoreManagement.BUS;
 using StoreManagement.DAO;
-using StoreManagement.DTO;
 using StoreManagement.Functions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreManagement
@@ -49,22 +42,30 @@ namespace StoreManagement
             try
             {
                 string id = dgvNhanVien.SelectedCells[0].OwningRow.Cells["Mã nhân viên"].Value.ToString();
-                if (TaiKhoanBUS.Instance.XoaTaiKhoan(id) == true)
+                if(dgvNhanVien.SelectedCells[0].OwningRow.Cells["Mã nhân viên"].Value.ToString() != "NV1")
                 {
-                    if (NhanVienBUS.Instance.XoaNhanVien(id) == true)
+                    if (TaiKhoanBUS.Instance.XoaTaiKhoan(id) == true)
                     {
-                        MessageBox.Show("Xóa thành công");
+                        if (NhanVienBUS.Instance.XoaNhanVien(id) == true)
+                        {
+                            MessageBox.Show("Xóa thành công");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xóa không thành công");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Xóa không thành công");
+                        MessageBox.Show("Xoá thông tin không thành công");
                     }
+                    FormDSNhanVien_Load(sender, e);
                 }
                 else
                 {
-                    MessageBox.Show("Xoá thông tin không thành công");
+                    MessageBox.Show("Không được xóa tài khoản này");
                 }
-                FormDSNhanVien_Load(sender, e);
+                
             }
             catch (Exception ex)
             {
@@ -80,9 +81,16 @@ namespace StoreManagement
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-
+            string tenNV = tbxTimKiem.Text.ToString();
+            if (tenNV == "")
+            {
+                MessageBox.Show("Nhập mã nhân viên!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            NhanVienBUS.Instance.TimKiemNhanVienTheoTen(dgvNhanVien, tenNV);
         }
 
+        #region PageProcessing
         private void btnDauTrang_Click(object sender, EventArgs e)
         {
             PageProcessing.Instance.DauTrang(dataTable, dgvNhanVien, lblPageview);
@@ -104,5 +112,7 @@ namespace StoreManagement
             // Kiểm tra xem có trang trước đó không
             PageProcessing.Instance.TrangKeTruoc(dataTable, dgvNhanVien, lblPageview);
         }
+
+        #endregion
     }
 }

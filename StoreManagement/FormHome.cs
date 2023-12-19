@@ -1,7 +1,6 @@
 ﻿using StoreManagement.BUS;
 using StoreManagement.Functions;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace StoreManagement
@@ -114,12 +113,13 @@ namespace StoreManagement
         {
             FormThongTinNhanVien nhanVien = new FormThongTinNhanVien();
             nhanVien.ShowDialog();
+            FormHome_Load(sender, e);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(this,
-                        "Are you sure you want to logout?",
+                        "Bạn chắc chắn đăng xuất không?",
                         "Closing Form",
                         MessageBoxButtons.OKCancel,
                         MessageBoxIcon.Question) == DialogResult.OK)

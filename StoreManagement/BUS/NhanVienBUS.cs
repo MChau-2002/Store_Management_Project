@@ -30,7 +30,6 @@ namespace StoreManagement.BUS
 
         public void SetCurrentNhanVien(string TaiKhoan)
         {
-
             DataTable data = TaiKhoanDAO.Instance.GetCurrentNhanVien(TaiKhoan);
             if (data.Rows.Count > 0)
             {
@@ -73,13 +72,19 @@ namespace StoreManagement.BUS
         {
             return NhanVienDAO.Instance.ThemNhanVien(NV);
         }
+
         public bool XoaNhanVien(string maNhanVien)
         {
             return NhanVienDAO.Instance.XoaNhanVien(maNhanVien);
         }
+
         public void TimKiemNhanVien(DataGridView dgv, string maNhanVien)
         {
             dgv.DataSource = NhanVienDAO.Instance.GetNhanVienById(maNhanVien);
+        }
+        public void TimKiemNhanVienTheoTen(DataGridView dgv, string tenNV)
+        {
+            dgv.DataSource = NhanVienDAO.Instance.TimNhanVienTheoTen(tenNV);
         }
 
         public string idGenerate(string prefix)

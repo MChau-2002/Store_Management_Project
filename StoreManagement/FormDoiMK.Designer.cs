@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.pnlDoiMK = new System.Windows.Forms.Panel();
+            this.btnDoiMatKhau = new System.Windows.Forms.Button();
+            this.tbxXacNhan = new System.Windows.Forms.TextBox();
+            this.lblXacNhanPass = new System.Windows.Forms.Label();
             this.tbxPassMoi = new System.Windows.Forms.TextBox();
             this.tbxPassCu = new System.Windows.Forms.TextBox();
             this.lblPassMoi = new System.Windows.Forms.Label();
             this.lblPassCu = new System.Windows.Forms.Label();
-            this.tbxXacNhan = new System.Windows.Forms.TextBox();
-            this.lblXacNhanPass = new System.Windows.Forms.Label();
-            this.btnDoiMatKhau = new System.Windows.Forms.Button();
+            this.btnXemMK = new System.Windows.Forms.Button();
             this.pnlDoiMK.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlDoiMK
             // 
+            this.pnlDoiMK.Controls.Add(this.btnXemMK);
             this.pnlDoiMK.Controls.Add(this.btnDoiMatKhau);
             this.pnlDoiMK.Controls.Add(this.tbxXacNhan);
             this.pnlDoiMK.Controls.Add(this.lblXacNhanPass);
@@ -54,11 +56,43 @@
             this.pnlDoiMK.Size = new System.Drawing.Size(658, 306);
             this.pnlDoiMK.TabIndex = 0;
             // 
+            // btnDoiMatKhau
+            // 
+            this.btnDoiMatKhau.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnDoiMatKhau.AutoSize = true;
+            this.btnDoiMatKhau.Location = new System.Drawing.Point(262, 233);
+            this.btnDoiMatKhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDoiMatKhau.Name = "btnDoiMatKhau";
+            this.btnDoiMatKhau.Size = new System.Drawing.Size(131, 38);
+            this.btnDoiMatKhau.TabIndex = 82;
+            this.btnDoiMatKhau.Text = "Đổi mật khẩu";
+            this.btnDoiMatKhau.UseVisualStyleBackColor = true;
+            this.btnDoiMatKhau.Click += new System.EventHandler(this.btnDoiMatKhau_Click);
+            // 
+            // tbxXacNhan
+            // 
+            this.tbxXacNhan.Location = new System.Drawing.Point(200, 175);
+            this.tbxXacNhan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxXacNhan.Name = "tbxXacNhan";
+            this.tbxXacNhan.PasswordChar = '*';
+            this.tbxXacNhan.Size = new System.Drawing.Size(384, 26);
+            this.tbxXacNhan.TabIndex = 78;
+            // 
+            // lblXacNhanPass
+            // 
+            this.lblXacNhanPass.AutoSize = true;
+            this.lblXacNhanPass.Location = new System.Drawing.Point(44, 178);
+            this.lblXacNhanPass.Name = "lblXacNhanPass";
+            this.lblXacNhanPass.Size = new System.Drawing.Size(151, 20);
+            this.lblXacNhanPass.TabIndex = 77;
+            this.lblXacNhanPass.Text = "Xác nhận mật khẩu:";
+            // 
             // tbxPassMoi
             // 
             this.tbxPassMoi.Location = new System.Drawing.Point(200, 118);
             this.tbxPassMoi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxPassMoi.Name = "tbxPassMoi";
+            this.tbxPassMoi.PasswordChar = '*';
             this.tbxPassMoi.Size = new System.Drawing.Size(384, 26);
             this.tbxPassMoi.TabIndex = 76;
             // 
@@ -67,6 +101,7 @@
             this.tbxPassCu.Location = new System.Drawing.Point(200, 61);
             this.tbxPassCu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxPassCu.Name = "tbxPassCu";
+            this.tbxPassCu.PasswordChar = '*';
             this.tbxPassCu.Size = new System.Drawing.Size(384, 26);
             this.tbxPassCu.TabIndex = 75;
             // 
@@ -88,35 +123,17 @@
             this.lblPassCu.TabIndex = 73;
             this.lblPassCu.Text = "Mật khẩu cũ:";
             // 
-            // tbxXacNhan
+            // btnXemMK
             // 
-            this.tbxXacNhan.Location = new System.Drawing.Point(200, 175);
-            this.tbxXacNhan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbxXacNhan.Name = "tbxXacNhan";
-            this.tbxXacNhan.Size = new System.Drawing.Size(384, 26);
-            this.tbxXacNhan.TabIndex = 78;
-            // 
-            // lblXacNhanPass
-            // 
-            this.lblXacNhanPass.AutoSize = true;
-            this.lblXacNhanPass.Location = new System.Drawing.Point(44, 178);
-            this.lblXacNhanPass.Name = "lblXacNhanPass";
-            this.lblXacNhanPass.Size = new System.Drawing.Size(151, 20);
-            this.lblXacNhanPass.TabIndex = 77;
-            this.lblXacNhanPass.Text = "Xác nhận mật khẩu:";
-            // 
-            // btnDoiMatKhau
-            // 
-            this.btnDoiMatKhau.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnDoiMatKhau.AutoSize = true;
-            this.btnDoiMatKhau.Location = new System.Drawing.Point(262, 233);
-            this.btnDoiMatKhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDoiMatKhau.Name = "btnDoiMatKhau";
-            this.btnDoiMatKhau.Size = new System.Drawing.Size(131, 38);
-            this.btnDoiMatKhau.TabIndex = 82;
-            this.btnDoiMatKhau.Text = "Đổi mật khẩu";
-            this.btnDoiMatKhau.UseVisualStyleBackColor = true;
-            this.btnDoiMatKhau.Click += new System.EventHandler(this.btnDoiMatKhau_Click);
+            this.btnXemMK.AutoSize = true;
+            this.btnXemMK.Location = new System.Drawing.Point(462, 233);
+            this.btnXemMK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnXemMK.Name = "btnXemMK";
+            this.btnXemMK.Size = new System.Drawing.Size(122, 38);
+            this.btnXemMK.TabIndex = 3;
+            this.btnXemMK.Text = "Xem mật khẩu";
+            this.btnXemMK.UseVisualStyleBackColor = true;
+            this.btnXemMK.Click += new System.EventHandler(this.btnXemMK_Click);
             // 
             // FormDoiMK
             // 
@@ -142,5 +159,6 @@
         private System.Windows.Forms.TextBox tbxXacNhan;
         private System.Windows.Forms.Label lblXacNhanPass;
         private System.Windows.Forms.Button btnDoiMatKhau;
+        private System.Windows.Forms.Button btnXemMK;
     }
 }

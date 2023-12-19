@@ -37,6 +37,7 @@ namespace StoreManagement.BUS
         {
             return KhachHangDAO.Instance.SuaKH(KH);
         }
+
         public bool XoaKH(string id)
         {
             return KhachHangDAO.Instance.XoaKH(id);

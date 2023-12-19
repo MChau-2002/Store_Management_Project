@@ -40,16 +40,16 @@
             this.btnDSHoaDon = new System.Windows.Forms.Button();
             this.btnThongKe = new System.Windows.Forms.Button();
             this.btnPhanloai = new System.Windows.Forms.Button();
+            this.pbxLogo = new System.Windows.Forms.PictureBox();
             this.btnSanPham = new System.Windows.Forms.Button();
             this.pnlTittle = new System.Windows.Forms.Panel();
             this.lblTittle = new System.Windows.Forms.Label();
             this.pnlForm = new System.Windows.Forms.Panel();
             this.timeSlide = new System.Windows.Forms.Timer(this.components);
-            this.pbxLogo = new System.Windows.Forms.PictureBox();
             this.pnlButton.SuspendLayout();
             this.pnlTaiKhoan.SuspendLayout();
-            this.pnlTittle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
+            this.pnlTittle.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlButton
@@ -210,6 +210,17 @@
             this.btnPhanloai.UseVisualStyleBackColor = false;
             this.btnPhanloai.Click += new System.EventHandler(this.btnNCC_Click);
             // 
+            // pbxLogo
+            // 
+            this.pbxLogo.Image = global::StoreManagement.Properties.Resources.OIP_removebg_preview;
+            this.pbxLogo.Location = new System.Drawing.Point(0, 0);
+            this.pbxLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbxLogo.Name = "pbxLogo";
+            this.pbxLogo.Size = new System.Drawing.Size(200, 184);
+            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxLogo.TabIndex = 0;
+            this.pbxLogo.TabStop = false;
+            // 
             // btnSanPham
             // 
             this.btnSanPham.BackColor = System.Drawing.Color.CornflowerBlue;
@@ -260,17 +271,6 @@
             // 
             this.timeSlide.Tick += new System.EventHandler(this.timeSlide_Tick);
             // 
-            // pbxLogo
-            // 
-            this.pbxLogo.Image = global::StoreManagement.Properties.Resources.OIP_removebg_preview;
-            this.pbxLogo.Location = new System.Drawing.Point(0, 0);
-            this.pbxLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pbxLogo.Name = "pbxLogo";
-            this.pbxLogo.Size = new System.Drawing.Size(200, 184);
-            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxLogo.TabIndex = 0;
-            this.pbxLogo.TabStop = false;
-            // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -288,9 +288,9 @@
             this.Load += new System.EventHandler(this.FormHome_Load);
             this.pnlButton.ResumeLayout(false);
             this.pnlTaiKhoan.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
             this.pnlTittle.ResumeLayout(false);
             this.pnlTittle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -38,6 +38,11 @@ namespace StoreManagement
             try
             {
                 GetValue();
+                if (tbxPL.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mời nhập đủ thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 if (PhanLoaiBUS.Instance.ThemLoai(phanLoai) == true)
                 {
                     MessageBox.Show("Thêm thành công");

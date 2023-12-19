@@ -1,12 +1,5 @@
 ﻿using StoreManagement.BUS;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreManagement
@@ -24,6 +17,25 @@ namespace StoreManagement
             MessageBox.Show(message[1], message[0]);
             if (message[0] == "success")
                 Close();
+        }
+
+        private void btnXemMK_Click(object sender, EventArgs e)
+        {
+            // Check if the current PasswordChar is '*'
+            if (tbxPassCu.PasswordChar == '*')
+            {
+                // If it is '*', set it to 0 to display the password in plain text
+                tbxPassCu.PasswordChar = '\0';
+                tbxPassMoi.PasswordChar = '\0';
+                tbxXacNhan.PasswordChar = '\0';
+            }
+            else
+            {
+                // If it is not '*', set it to '*' to mask the password
+                tbxPassCu.PasswordChar = '*';
+                tbxPassMoi.PasswordChar = '*';
+                tbxXacNhan.PasswordChar = '*';
+            }
         }
     }
 }

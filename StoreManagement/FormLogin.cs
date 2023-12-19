@@ -20,13 +20,13 @@ namespace StoreManagement
             {
                 btnDangKy.Visible = true;
                 btnDangKy.Enabled = true;
-                btnLogin.Enabled = false;
+                btnDangNhap.Enabled = false;
             }
             else
             {
                 btnDangKy.Visible = false;
                 btnDangKy.Enabled = false;
-                btnLogin.Enabled = true;
+                btnDangNhap.Enabled = true;
             }
         }
 
@@ -35,13 +35,19 @@ namespace StoreManagement
             if (tbxTaiKhoan.Text == defaultUsernameText || tbxMatKhau.Text == defaultPasswordText)
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //return;
+                return;
+            }
+
+            if (tbxTaiKhoan.Text.Trim() == "" || tbxMatKhau.Text.Trim() == "")
+            {
+                MessageBox.Show("Thông tin đăng nhập không thể bỏ trống", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             if (tbxTaiKhoan.Text[0] == ' ' || tbxMatKhau.Text[0] == ' ')
             {
                 MessageBox.Show("Thông tin đăng nhập không thể bắt đầu bằng phím cách (space key)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //return;
+                return;
             }
             try
             {
@@ -70,7 +76,21 @@ namespace StoreManagement
             this.Hide();
             FormSignUp signUp = new FormSignUp();
             signUp.ShowDialog();
+            btnDangKy.Enabled = false;
+            btnDangNhap.Enabled = true;
             this.Show();
+        }
+        
+        private void btnXemMK_Click(object sender, EventArgs e)
+        {
+            if (tbxMatKhau.PasswordChar == '*')
+            {
+                tbxMatKhau.PasswordChar = '\0';
+            }
+            else
+            {
+                tbxMatKhau.PasswordChar = '*';
+            }
         }
     }
 }

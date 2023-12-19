@@ -2,7 +2,6 @@
 using StoreManagement.DAO;
 using StoreManagement.DTO;
 using StoreManagement.Functions;
-using System.Collections.Generic;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -170,10 +169,11 @@ namespace StoreManagement
             catch (Exception ex)
             {
                 //throw ex;
-                MessageBox.Show("Lỗi: " + ex);
+                MessageBox.Show("Sản phẩm không được phép xóa" + ex);
             }
         }
 
+        #region PageProcessing
         private void btnDauTrang_Click(object sender, EventArgs e)
         {
             PageProcessing.Instance.DauTrang(dataTable, dgvSanPham, lblPageview);
@@ -195,6 +195,8 @@ namespace StoreManagement
             // Kiểm tra xem có trang trước đó không
             PageProcessing.Instance.TrangKeTruoc(dataTable, dgvSanPham, lblPageview);
         }
+        
+        #endregion
 
         private void btnNhapHang_Click(object sender, EventArgs e)
         {

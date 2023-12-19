@@ -97,6 +97,7 @@ namespace StoreManagement.DAO
             }
             return result;
         }
+
         public bool NhapHang(int TonKho, int SoLuongNhap, string MaSP)
         {
             string query = "update SanPham set SoLuong = @TonKho , SoLuongNhap = @SoLuongNhap  " +

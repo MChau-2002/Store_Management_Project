@@ -20,7 +20,7 @@ namespace StoreManagement
         {
             dataTable = ChiTietHoaDonDAO.Instance.ChiTietHoaDon();
             dgvCTHD.DataSource = dataTable;
-
+            
             PageProcessing.Instance.Load(dataTable,dgvCTHD,lblPageview);
         }
 
@@ -37,18 +37,28 @@ namespace StoreManagement
 
         private void BtnXem_Click(object sender, EventArgs e)
         {
-            pPDHoaDon.Document = pDHoaDon;
-            pPDHoaDon.ShowDialog();
+            if (dgvCTHD.SelectedRows[0].Cells["Mã hóa đơn"].Value.ToString() != null)
+            {
+                pPDHoaDon.Document = pDHoaDon;
+                pPDHoaDon.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Chưa có hóa đơn");
+            }
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
             FormCTHD_Load(sender, e);
         }
+
         private void dgvCTHD_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+
+        #region PageProcessing
         private void btnDauTrang_Click(object sender, EventArgs e)
         {
             PageProcessing.Instance.DauTrang(dataTable, dgvCTHD, lblPageview);
@@ -71,20 +81,21 @@ namespace StoreManagement
             PageProcessing.Instance.TrangKeTruoc(dataTable, dgvCTHD, lblPageview);
         }
 
+        #endregion
+
         private void PDHoaDon_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             string maCTHD = dgvCTHD.SelectedRows[0].Cells["Mã hóa đơn"].Value.ToString();
             DataTable data = ChiTietHoaDonDAO.Instance.XemBienLai(maCTHD);
             string ngayBan = "Ngày: " + data.Rows[0]["Ngày bán"].ToString();
             float tongTien = 0;
-            string giamGia = "Giảm giá: " + data.Rows[0]["Giảm giá"].ToString();
+            string giamGia = "Giảm giá: " + data.Rows[0]["Giảm giá"].ToString() + "%";
             string phaiThanhToan = "Phải thanh toán: " + data.Rows[0]["Thành tiền"].ToString();
 
             //Header
             e.Graphics.DrawString("SIÊU THỊ MINI".ToUpper(), new Font("Microsoft Sans Serif",
                 20, FontStyle.Bold), Brushes.Black, new Point(330, 20));
-            e.Graphics.DrawString("Tô ký, Tân Chánh Hiệp, quận 12, Hồ Chí Minh".ToUpper(),
-                new Font("Microsoft Sans Serif",
+            e.Graphics.DrawString("Tô ký, Tân Chánh Hiệp, quận 12, Hồ Chí Minh".ToUpper(),new Font("Microsoft Sans Serif",
                 12, FontStyle.Regular), Brushes.Black, new Point(200, 60));
             e.Graphics.DrawString("SDT: +84-024681012".ToUpper(), new Font("Microsoft Sans Serif",
                 12, FontStyle.Regular), Brushes.Black, new Point(330, 80));
@@ -129,7 +140,8 @@ namespace StoreManagement
                 string soLuong = data.Rows[i]["Số lượng"].ToString();
                 string donGia = data.Rows[i]["Đơn giá"].ToString();
                 string giamGiaSp = data.Rows[i]["Giảm giá sản phẩm"].ToString();
-                string thanhTien = data.Rows[i]["Đơn giá"].ToString();
+                string thanhTien = ((float.Parse(donGia) * int.Parse(soLuong)) 
+                    - (float.Parse(giamGiaSp) * (float.Parse(donGia) * int.Parse(soLuong))) / 100).ToString();
 
                 tongTien += float.Parse(thanhTien);
 
@@ -169,8 +181,6 @@ namespace StoreManagement
             y += 50;
             e.Graphics.DrawString("Xin cảm ơn quý khách!", new Font("Microsoft Sans Serif",
             14, FontStyle.Bold), Brushes.Black, new Point(300, y));
-
         }
-
     }
 }
