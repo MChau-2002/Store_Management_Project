@@ -19,7 +19,7 @@ namespace StoreManagement.Functions
                 return instance;
             }
         }
-
+        //tt
         public DataProvider() { }
 
         SqlDataAdapter dataAdapter;
